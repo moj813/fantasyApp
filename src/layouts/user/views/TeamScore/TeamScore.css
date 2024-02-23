@@ -1,0 +1,58 @@
+.scorecard_32 {
+    height: 100%;
+    width: 95%;
+    margin-right: 10%;
+  }
+  
+  h3 {
+    font-weight: 400;
+  }
+  
+  .navigation-bar {
+    display: flex; /* Add display flex */
+    justify-content: space-between; /* Add space between items */
+    align-items: center; /* Vertically center items */
+    margin-top: 20px;
+    border-bottom: 1px solid #ccc; /* Add bottom border */
+    padding-bottom: 5px;
+  }
+  
+  .navigation-bar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex; /* Add display flex */
+  }
+  
+  .navigation-bar button {
+    margin-left: 180px;
+    cursor: pointer;
+    border: none; /* Remove default button border */
+  }
+  
+  .navigation-bar button:focus {
+    color: blue; /* Change color on hover */
+  }
+  
+  .navigation-bar button.selected {
+    border-bottom: 2px solid blue; /* Add underline for selected button */
+  }
+  
+  @import url(https://fonts.googleapis.com/css?family=Poppins:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic);
+  
+  :root {
+    --primary-clr: #7522e6;
+    --bg-clr: #f2f4f5;
+    --white-bg: #fff;
+    --dark-text-clr: #363b46;
+    --light-text-clr: #fff;
+    --hover-clr: #f1e8fd;
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+  }
+  

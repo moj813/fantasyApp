@@ -6,7 +6,7 @@ function Sidebar() {
 
   const linkItems = [
     { icon: 'home-outline', text: 'Home' },
-    { icon: 'cube-outline', text: 'Dashboard' },
+    { icon: 'cube-outline', text: 'Live Score', path:'/user/livescore' },
     { icon: 'search-outline', text: 'Search' },
     { icon: 'bookmark-outline', text: 'Bookmarks' },
     { icon: 'cog-outline', text: 'Settings' },
