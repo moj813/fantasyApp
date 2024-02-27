@@ -7,12 +7,13 @@ const TeamScore = () => {
       <h3>
         First team vs Second team, n<sup>th</sup> Match - Live Cricket Score & Commentary
       </h3>
-      <nav className="navigation-bar">
-        <ul>
-          <button>Commentary</button>
-          <button>Score Card</button>
-          <button>Squad</button>
-        </ul>
+      <nav className="navigation-bar_32">
+        
+          <button> Commentary </button>
+          <button> Score Card </button>
+          <button> Squad </button>
+          <button> Overs </button>
+        
       </nav>
       <br />
       <h1>Batting Team XXX/XX (over)</h1>

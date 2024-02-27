@@ -5,38 +5,38 @@
   }
   
   h3 {
+    font-weight: 300;
+  }
+
+  h1{
     font-weight: 400;
   }
   
-  .navigation-bar {
+  .navigation-bar_32 {
     display: flex; /* Add display flex */
-    justify-content: space-between; /* Add space between items */
-    align-items: center; /* Vertically center items */
     margin-top: 20px;
     border-bottom: 1px solid #ccc; /* Add bottom border */
     padding-bottom: 5px;
+    width: 100%;
+    justify-content: space-around;
   }
   
-  .navigation-bar ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    display: flex; /* Add display flex */
-  }
   
-  .navigation-bar button {
-    margin-left: 180px;
+  .navigation-bar_32 button {
     cursor: pointer;
-    border: none; /* Remove default button border */
+    width: fit-content;
+    background-color: transparent;
+    border: none; 
   }
   
-  .navigation-bar button:focus {
+  .navigation-bar_32 button:focus {
     color: blue; /* Change color on hover */
   }
   
-  .navigation-bar button.selected {
+  .navigation-bar_32 button.selected {
     border-bottom: 2px solid blue; /* Add underline for selected button */
   }
+  
   
   @import url(https://fonts.googleapis.com/css?family=Poppins:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic);
   
@@ -55,4 +55,11 @@
     box-sizing: border-box;
     font-family: "Poppins", sans-serif;
   }
-  
+  @media (max-width:760px) {
+    .navigation-bar_32  {
+     padding: 0px 20px;
+     overflow-x:scroll;
+     background: transparent;
+    }
+    
+  }

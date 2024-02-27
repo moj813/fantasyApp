@@ -11,14 +11,81 @@ const LiveScore = () => {
   };
 
   return (
-    <div className="live-score-container">
-      <NavLink to="/user/livescore/team-score" onClick={updateScore}>
+  <div className="scoreCard-32">
+     <div className="live-score-container_32">
+      <NavLink to="/user/livescore/22DIT032" onClick={updateScore}>
         <span>First team</span> <span>vs</span> <span>Second team</span>
-        <h2>Batting or Bowling</h2>
+        <h2>Batting Team name</h2>
         <p>{score}</p>
         <h6>Tap for more info</h6>
       </NavLink>
     </div>
+
+    <div className="live-score-container_32">
+      <NavLink to="/user/livescore/22DIT033" onClick={updateScore}>
+        <span>First team</span> <span>vs</span> <span>Second team</span>
+        <h2>Batting Team name</h2>
+        <p>{score}</p>
+        <h6>Tap for more info</h6>
+      </NavLink>
+    </div>
+
+    <div className="live-score-container_32">
+      <NavLink to="/user/livescore/team-score" onClick={updateScore}>
+        <span>First team</span> <span>vs</span> <span>Second team</span>
+        <h2>Batting Team name</h2>
+        <p>{score}</p>
+        <h6>Tap for more info</h6>
+      </NavLink>
+    </div>
+
+    <div className="live-score-container_32">
+      <NavLink to="/user/livescore/team-score" onClick={updateScore}>
+        <span>First team</span> <span>vs</span> <span>Second team</span>
+        <h2>Batting Team name</h2>
+        <p>{score}</p>
+        <h6>Tap for more info</h6>
+      </NavLink>
+    </div>
+
+    <div className="live-score-container_32">
+      <NavLink to="/user/livescore/team-score" onClick={updateScore}>
+        <span>First team</span> <span>vs</span> <span>Second team</span>
+        <h2>Batting Team name</h2>
+        <p>{score}</p>
+        <h6>Tap for more info</h6>
+      </NavLink>
+    </div>
+
+    <div className="live-score-container_32">
+      <NavLink to="/user/livescore/team-score" onClick={updateScore}>
+        <span>First team</span> <span>vs</span> <span>Second team</span>
+        <h2>Batting Team name</h2>
+        <p>{score}</p>
+        <h6>Tap for more info</h6>
+      </NavLink>
+    </div>
+
+    <div className="live-score-container_32">
+      <NavLink to="/user/livescore/team-score" onClick={updateScore}>
+        <span>First team</span> <span>vs</span> <span>Second team</span>
+        <h2>Batting Team name</h2>
+        <p>{score}</p>
+        <h6>Tap for more info</h6>
+      </NavLink>
+    </div>
+
+    <div className="live-score-container_32">
+      <NavLink to="/user/livescore/team-score" onClick={updateScore}>
+        <span>First team</span> <span>vs</span> <span>Second team</span>
+        <h2>Batting Team name</h2>
+        <p>{score}</p>
+        <h6>Tap for more info</h6>
+      </NavLink>
+    </div>
+    
+    
+  </div>
   );
 }
 

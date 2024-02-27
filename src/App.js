@@ -24,7 +24,7 @@ function App() {
         <Route path="/user/default" element={<>This is User Default</>} />
         <Route path="/user/mytournaments" element={<>This is User</>} />
         <Route path="/user/livescore" element={<LiveScore />} />
-        <Route path="/user/livescore/team-score" element={<TeamScore />} /> {/* Use element prop instead of component */}
+        <Route path="/user/livescore/:id" element={<TeamScore />} /> {/* Use element prop instead of component */}
         <Route path="/user/*" element={<>404 Page Not Found</>} />
       </Route>
 
