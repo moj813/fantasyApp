@@ -1,19 +1,14 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import CloseBtn from './CloseBtn';
+function Sidebar({toggleHandler}) {
 
-function Sidebar() {
-  const [isDarkMode, setIsDarkMode] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(0);
 
   const linkItems = [
     { icon: 'home-outline', text: 'Home' },
-    { icon: 'cube-outline', text: 'Dashboard' },
-    { icon: 'search-outline', text: 'Search' },
-    { icon: 'bookmark-outline', text: 'Bookmarks' },
-    { icon: 'cog-outline', text: 'Settings' },
     {icon: 'cog-outline', text: 'My Tournamentes' , path : '/admin/mytournaments'}
   ];
-
   const handleLinkItemClick = (index) => {
     setSelectedIndex(index);
   };
@@ -22,9 +17,15 @@ function Sidebar() {
 
   return (
     <div className="container">
-      <div className="logo">
+      <div className='logoContainer'>
+      <div >
         Logo
       </div>
+      <button onClick={()=>toggleHandler()} className='toggle-btn'>
+        <CloseBtn />
+      </button>
+      </div>
+      <hr className='hrline'/>
       <ul className="link-items">
         {linkItems.map((item, index) => (
           <li
@@ -33,6 +34,7 @@ function Sidebar() {
             onClick={() => handleLinkItemClick(index)}
           >
             <NavLink to={item.path} className="link">
+              
               <span >
                 {item.text}
               </span>
