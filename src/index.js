@@ -1,15 +1,32 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import { BrowserRouter } from 'react-router-dom';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { BrowserRouter } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+import { Provider } from "react-redux";
+import rootReducer from "./reducer/reducer";
+import {configureStore} from "@reduxjs/toolkit"
+
+
+const store = configureStore({             //added "rootReducer" into store variable and rootReducer is combination of all reducer which is made in slices;
+  reducer:rootReducer,
+});
+
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
+   <Provider store={store}>
+   <BrowserRouter>
       <App />
+      <ToastContainer
+        theme="dark"
+      />
     </BrowserRouter>
+   </Provider>
   </React.StrictMode>
 );
 

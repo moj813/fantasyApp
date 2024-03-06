@@ -1,17 +1,16 @@
 import React, { useState } from "react";
 import Sidebar from "./components/Sidebar.js";
 import "./stylesheets/style.css";
-import { Outlet, Navigate } from "react-router";
+import { Outlet } from "react-router";
 import HamBurger from "./components/HamBurger.js";
 const Index = () => {
-  const [useAdmin, setAdmin] = useState(true);
   const [toogleNav, setToogleNav] = useState(true);
   function toggleHandler() {
     setToogleNav(!toogleNav);
   }
   return (
     <>
-      {useAdmin ? (
+
         <>
           <div className="App">
             <div className="sidebar-collapse">
@@ -28,9 +27,7 @@ const Index = () => {
             </div>
           </div>
         </>
-      ) : (
-        <Navigate to="/login" replace={true} />
-      )}
+      
     </>
   );
 };
