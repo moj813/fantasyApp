@@ -7,7 +7,7 @@ import Mytournaments from "./layouts/admin/views/mytournaments/Mytournaments";
 import LiveScore from "./layouts/user/views/LiveScore/LiveScore";
 import TeamScore from "./layouts/user/views/TeamScore/TeamScore";
 import Addtournaments from "./layouts/admin/views/mytournaments/Addtournaments";
-import Login from './layouts/auth/login/login'
+import Login from "./layouts/auth/login/Login/Login";
 import Signup from './layouts/auth/signup/Signup'
 import Home from './layouts/auth/home/Home'
 import EmailVerify from "./layouts/auth/signup/EmailVerify";

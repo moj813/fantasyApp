@@ -1,94 +1,158 @@
-const user = require("../model/userDetails");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const cookieParser = require("cookie-parser");
+const otpGenerator = require("otp-generator");
+const otpModel = require("../model/otp");
+const userModel = require('../model/userDetails');
+const mailSender = require('../transport/mailsender');
+const otpTemplate = require("../emailBody/verificatioOtp");
+require("dotenv").config();
 
-exports.register = async (req, res) => {
-  try {
-    let userExist = await user.findOne({ email: req.body.email });
-    if (userExist) {
-      return res.status(401).json({
-        success: false,
-        msg: "User Already Exists",
-      });
-    } else {
-      // Create a new user instance
-      const { firstName, lastName, email, role, password } = req.body;
-      let hashedPassword = await bcrypt.hash(password, 10);
-      let registeredUser = new user({
-        firstName: firstName,
-        lastName: lastName,
-        email: email,
-        role: role,
-        password: hashedPassword,
-      });
+//signUp
+const signUp = async (req, res) => {
+  const {accountType,  firstName, lastName, email, password, confirmPassword,  otp} = req.body;
 
-      // Save the new user to the database
-      await registeredUser.save();
-
-      return res.status(200).json({
-        success: true,
-        msg: "User Registered",
-      });
-    }
-  } catch (error) {
-    console.error(error);
-    return res.status(500).json({
-      success: false,
-      msg: "Internal Server Error",
-    });
+  if(!accountType || !firstName || !lastName || !email || !password || !confirmPassword || !otp){
+    return res.json({
+      success:false,
+      msg:"Fill All the Fields"
+    })
   }
+
+
+  const userPresent = await userModel.findOne({email:email});
+
+  if(userPresent){
+    return res.json({
+      success:false,
+      msg:"User Alredy Exist"
+    })
+  }
+
+  const findOtp = await otpModel.find({email}).sort({createdAt: -1}).limit(1);
+  
+  if(findOtp[0].otp !== otp){
+    return res.json({
+      success:false,
+      msg:"OTP Does not match"
+    })
+  }
+    const hasedPassword = await bcrypt.hash(password,10);
+
+    const registredUser = await userModel.create({
+      firstName,
+      lastName,
+      email,
+      password:hasedPassword,
+      accountType
+    })
+
+  return res.json({
+    success:true,
+    msg:"User Registred"
+  })
 };
 
-exports.login = async (req, res) => {
+//Login
+const login = async (req, res) => {
+
   try {
-    const { email, password } = req.body;
-    const userAtDB = await user.findOne({ email: email });
-
-    if (!userAtDB) {
-      return res.status(400).json({
-        success: false,
-        msg: "User Not Exist",
-      });
+    const {email, password} = req.body;                  //get data from req body
+  
+    if(!email || !password){                             // validate krlo means all inbox are filled or not;
+        return res.json({
+            success:false,
+            message:'Please Fill up All the Required Fields',
+        });
     }
-
-    const passwordMatch = await bcrypt.compare(password, userAtDB.password);
-
-    if (!passwordMatch) {
-      return res.status(400).json({
-        success: false,
-        msg: "PassWord not match",
-      });
+    
+    const user = await userModel.findOne({email});          //user check exist or not
+    if(!user){
+        return res.json({
+            success:false,
+            message:"User is not registrered, please signup first",
+        });
     }
+    
+    if(await bcrypt.compare(password, user.password)){                    //generate JWT, after password matching/comparing
+        const payload = {                                                 // generate payload;
+            email: user.email,
+            id: user._id,
+            accountType:user.role,
+        }
+        const token = jwt.sign(payload, process.env.JWT_SECRET, {         // generate token (combination of header , payload , signature) 
+            expiresIn:"52h",                                               // set expiry time;
+        });
+        user.token = token;
+        user.password= undefined;
 
-    const paylod = {
-      email: userAtDB.email,
-      role: userAtDB.role,
-      id: userAtDB._id,
-    };
+        const options = {                                               //create cookie and send response
+            expires: new Date(Date.now() + 3*24*60*60*1000),
+            httpOnly:true,
+        }
+        res.cookie("token", token, options).status(200).json({
+            success:true,
+            token,
+            user,
+            message:'Logged in successfully',
+        })
+  }
+    else {
+        return res.json({
+            success:false,
+            message:'Password is incorrect',
+        });
+    }
+}
+catch(error) {
+    console.log(error);
+    return res.json({
+        success:false,
+        message:'Login Failure, please try again',
+    });
+}
 
 
-    var token = jwt.sign(paylod, process.env.JWT_SECRET, {
-      expiresIn: "5s",
+};
+
+//sendOTP
+const sendOTP = async (req, res) => {
+  try {
+    let genratedOtp = otpGenerator.generate(6, {
+      upperCaseAlphabets: false,
+      specialChars: false,
+      lowerCaseAlphabets :false,
     });
 
-    paylod.token = token;
-    console.log(paylod);
-
-    const cookieOption = {
-      expiresIn : new Date(Date.now() + 1000*5),
-      httpOnly : true
+    let exist = await otpModel.findOne({ otp: genratedOtp });
+    while(exist){
+      genratedOtp = otpGenerator.generate(6, {
+        lowerCaseAlphabets :false,
+        upperCaseAlphabets: false,
+        specialChars: false,
+      });
+      let exist = await otpModel.findOne({ otp: genratedOtp });
     }
 
-    // res.cookie("token", token);
-    return res.status(200).cookie("token", token,cookieOption).json({
+    let response = await otpModel.create({
+      otp: genratedOtp,
+      email: req.body.email,
+    });
+
+    let res2 = await mailSender(req.body.email , "Verification Code for CrickDelight" , otpTemplate(genratedOtp));
+
+    res.json({
       success: true,
-      msg: "login Success",
+      msg: "Something Went Wrong",
     });
-  } catch (err) {
-    return res.status(500).json({
+  } catch {
+    res.json({
       success: false,
-      msg: "Internal Server Error",
+      msg: "Something Went Wrong",
     });
   }
 };
+
+// Controller for Changing Password
+const changePassword = async (req, res) => {};
+
+module.exports = { signUp, login, sendOTP, changePassword };

@@ -1,25 +1,45 @@
-const express = require('express');
+
+const express = require("express");
 const app = express();
-const dbConnect = require('./config/connect')
-const {register , login} = require('./controller/Auth')
-const bodyParser = require('body-parser');
-const mailSender = require('./transport/mailsender');
-require('dotenv').config()
 
-app.use(bodyParser.urlencoded({ extended: true }))
-app.use(bodyParser.json())
+const userRoutes = require("./routes/User");
+// const profileRoutes = require("./routes/Profile");
+// const paymentRoutes = require("./routes/Payments");
+// const courseRoutes = require("./routes/Course");
+// const contactUsRoute = require("./routes/Contact");
 
+const dbConnect = require("./config/connect");
+const cookieParser = require("cookie-parser");
+const cors = require("cors");
+const dotenv = require("dotenv");
+
+dotenv.config();
+const PORT = process.env.PORT || 4000;
+
+//database connect
 dbConnect();
-app.post('/register',register)
-app.post('/login',login)
-app.get('/otp',(req,res)=>{
-    const data = mailSender("mojonly813@gmail.com","test","Hello JEEE")
-    res.json({
-        success:true,
-        msg:"Otp Sent"
-    })
+//middlewares
+app.use(express.json());
+app.use(cookieParser());
+app.use(cors()); 
+
+
+//routes
+app.use("/auth", userRoutes);
+// app.use("/api/v1/profile", profileRoutes);
+// app.use("/api/v1/course", courseRoutes);
+// app.use("/api/v1/payment", paymentRoutes);
+// app.use("/api/v1/reach", contactUsRoute);
+
+
+//def route
+app.get("/", (req, res) => {
+	return res.json({
+		success:true,
+		message:'Your server is up and running....'
+	});
 });
 
-app.listen(process.env.PORT,()=>{
-    console.log("App is Listing at port 4000")
+app.listen(PORT, () => {
+	console.log(`App is running at ${PORT}`)
 })
