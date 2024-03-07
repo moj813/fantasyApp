@@ -10,6 +10,7 @@ import Addtournaments from "./layouts/admin/views/mytournaments/Addtournaments";
 import Login from './layouts/auth/login/login'
 import Signup from './layouts/auth/signup/Signup'
 import Home from './layouts/auth/home/Home'
+import EmailVerify from "./layouts/auth/signup/EmailVerify";
 function App() {
 
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/" element={<Home/>} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/verify-email" element={<EmailVerify />} />
         </Route>
         
     {/* This is For Admin ONly  */}
