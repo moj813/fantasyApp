@@ -43,7 +43,7 @@ const signUp = async (req, res) => {
       lastName,
       email,
       password:hasedPassword,
-      accountType
+      role:accountType
     })
 
   return res.json({

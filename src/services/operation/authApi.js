@@ -27,12 +27,12 @@ export function sendOtp(email, navigate) {
   }
 
 
-export function signUp(accountType,  firstName, lastName, email, password, confirmPassword,  otp, navigate){
+export function signUp(accountType,  firstName, lastName, email, password, confirmPassword , otp, navigate){
   return async (dispatch) => {
     const toastId = toast.loading("Loading...")
     dispatch(setLoading(true))
     try {
-       const response = await apiConnector("POST", 'http://localhost:4000/auth/signup', {accountType,  firstName, lastName, email, password, confirmPassword,  otp})
+       const response = await apiConnector("POST", 'http://localhost:4000/auth/signup', {accountType,  firstName, lastName, email, password,confirmPassword,  otp})
        
         if(!response.data.success){
           
@@ -68,7 +68,11 @@ export  function login(email,password,navigate){
       
       localStorage.setItem("token", JSON.stringify(response.data.token))
       localStorage.setItem("user", JSON.stringify(response.data.user))
-      navigate("/admin")
+      console.log("Printing Token")
+      console.log(response.data.token);
+      console.log("Printing User")
+      console.log(response.data.user)
+      response.data.user.role==="user" ? (navigate('/user')) : (navigate('/admin'))
     }
      catch (error) {
       console.log("LOGIN API ERROR............", error)
@@ -76,5 +80,16 @@ export  function login(email,password,navigate){
     }
     dispatch(setLoading(false))
     toast.dismiss(toastId)
+  }
+}
+
+export function logout(navigate) {
+  return (dispatch) => {
+    dispatch(setToken(null))
+    dispatch(setUser(null))
+    localStorage.removeItem("token")
+    localStorage.removeItem("user")
+    toast.success("Logged Out")
+    navigate("/")
   }
 }

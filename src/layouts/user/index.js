@@ -3,6 +3,7 @@ import Sidebar from "./components/Sidebar.js";
 import "./stylesheets/style.css";
 import { Outlet } from "react-router";
 import HamBurger from "./components/HamBurger.js";
+import ProfileDropdown from "./components/Profile.jsx";
 const Index = () => {
   const [toogleNav, setToogleNav] = useState(true);
   function toggleHandler() {
@@ -21,6 +22,7 @@ const Index = () => {
                 <button onClick={() => setToogleNav(!toogleNav)}>
                   <HamBurger />
                 </button>
+                <ProfileDropdown />
               </div>
               <h1>Hello User</h1>
               <Outlet />

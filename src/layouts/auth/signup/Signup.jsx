@@ -31,10 +31,12 @@ const Signup = () => {
 
   function handleOnSubmit(e){
     e.preventDefault();
-    console.log("Data Sub,itted");
+    console.log("Data Submitted");
     console.log(formData)
     if(password !== confirmPassword) {toast.error("Passwords do not match");  return ; }
     const signupData = { ...formData , accountType};
+    console.log("Data AT point of Dispatch");
+    console.log(signupData)
     dispatch(setSignupData(signupData))                                    // Setting signup data to state To be used after otp verification
     dispatch(sendOtp(formData.email, navigate))                           // Send OTP to user for verification
     setFormData({firstName: "", lastName: "",  email: "",  password: "",  confirmPassword: "",})           // Reset
@@ -54,8 +56,8 @@ const Signup = () => {
           >
             User
           </button>
-          <button className={`${accountType==='organizer' && "formBtnContainerActiveBtn_22" }`}
-            onClick={()=>setAccountType('organizer')}
+          <button className={`${accountType==='admin' && "formBtnContainerActiveBtn_22" }`}
+            onClick={()=>setAccountType('admin')}
           >
             Organizer
           </button>
