@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import './Navbar.css'
-import ProfileDropdown from '../../admin/components/Profile';
+import ProfileDropdown from '../../../component/Profile';
 const Navbar = () => {
     const { user } = useSelector((state) => state.profile);
     return (
@@ -38,18 +38,18 @@ const Navbar = () => {
 
                 {
                     user == null ? (<>
-                        <button className='navBtn_22'>
-                            <Link to="/login" className={"link"}>
+                        <Link to="/login" className={"link"}>
+                            <button className='navBtn_22'>
                                 Login
-                            </Link>
-                        </button>
+                            </button>
+                        </Link>
 
-                        <button className='navBtn_22'>
-                            <Link to="/signup" className={"link"}>
+                        <Link to="/signup" className={"link"}>
+                            <button className='navBtn_22'>
                                 Signup
-                            </Link>
-                        </button></>) : (
-                       <ProfileDropdown />
+                            </button>
+                        </Link></>) : (
+                        <ProfileDropdown />
                     )
 
 

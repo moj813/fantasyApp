@@ -84,6 +84,11 @@
 .submit:hover {
     background-color: rgb(16, 127, 6);
 }
+.disable{
+    background-color: #478749;
+    cursor: not-allowed;
+
+}
 
 /* Media Queries for responsiveness */
 @media only screen and (max-width: 768px) {

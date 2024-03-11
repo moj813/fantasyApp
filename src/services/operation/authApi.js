@@ -1,7 +1,6 @@
 import { toast } from "react-toastify";
-import { setLoading , setSignupData } from "../../slices/auth";
+import { setLoading  } from "../../slices/auth";
 import { apiConnector } from "../connector";
-import { useDispatch } from "react-redux";
 import { setToken , setUser } from "../../slices/profile";
 
 
@@ -68,10 +67,7 @@ export  function login(email,password,navigate){
       
       localStorage.setItem("token", JSON.stringify(response.data.token))
       localStorage.setItem("user", JSON.stringify(response.data.user))
-      console.log("Printing Token")
-      console.log(response.data.token);
-      console.log("Printing User")
-      console.log(response.data.user)
+     
       response.data.user.role==="user" ? (navigate('/user')) : (navigate('/admin'))
     }
      catch (error) {

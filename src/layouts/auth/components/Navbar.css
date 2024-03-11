@@ -36,11 +36,14 @@
     border: 1px solid gray;
     padding: 5px 17px;
     border-radius: 5px;
+    cursor: pointer;
 }
 .link{
     color: black;
+    cursor: pointer;
     text-decoration: none;
 }
+
 
 
 @media (max-width:760px) {

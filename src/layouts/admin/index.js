@@ -1,12 +1,14 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import Sidebar from "./components/Sidebar.js";
 import "./stylesheets/style.css";
 import { Outlet } from "react-router";
 import HamBurger from "./components/HamBurger.js";
-import ProfileDropdown from "./components/Profile.jsx";
+import ProfileDropdown from "../../component/Profile.jsx";
 const Index = () => {
   
   const [toogleNav, setToogleNav] = useState(true);
+  const user = useSelector((state)=>state.profile.user);
   function toggleHandler() {
     setToogleNav(!toogleNav);
   }
@@ -25,7 +27,7 @@ const Index = () => {
                 </button>
                 <ProfileDropdown />
               </div>
-              <h1>Hello User</h1>
+              <h1>Hello, {user.firstName}</h1>
               <Outlet />
             </div>
           </div>

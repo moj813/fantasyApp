@@ -20,7 +20,7 @@ const Mytournaments = () => {
             <li class="tourliname_18">Name</li>
             <li class="tourliitem_18">From Date</li>
             <li class="tourliitem_18">To Date</li>
-            <li class="tourliitem_18">Actions</li>
+            <li class="tourliitem_18">Action</li>
           </ul>
           <Dataview />
         </div>

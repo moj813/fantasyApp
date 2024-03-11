@@ -3,7 +3,7 @@ import { AiOutlineCaretDown } from "react-icons/ai"
 import { VscDashboard, VscSignOut } from "react-icons/vsc"
 import { useDispatch, useSelector } from "react-redux"
 import { Link, useNavigate } from "react-router-dom"
-import Avtor from '../../../Assets/Images/Avtor.png'
+import Avtor from '../Assets/Images/Avtor.png'
 import './Profile.css'
 
 import useOnClickOutside from "../hooks/useOnClickOutside"
@@ -29,6 +29,9 @@ export default function ProfileDropdown() {
       </div>
       {open && (
         <div onClick={(e) => e.stopPropagation()}  ref = {ref}  className="DropDownContainer_22" >
+          <div className="linkAtDropDown_22">
+              👋 Hey,{user.firstName}
+            </div>
           <Link to={`/${user.role}`} onClick={() => setOpen(false)}>
             <div className="linkAtDropDown_22">
               <VscDashboard className="text-lg" />
