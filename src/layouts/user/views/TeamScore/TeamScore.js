@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import './TeamScore.css';
 import Commentry from './Commentry/Commentry';
 import Scorecard from './Scorecard/Scorecard';
-import Overs from './Overs/Overs';
 import Squad from './Squad/Squad';
 
 const TeamScore = () => {
@@ -36,12 +35,7 @@ const TeamScore = () => {
         >
           Squad
         </button>
-        <button
-          className={selectedButton === 'overs' ? 'selected' : ''}
-          onClick={() => handleButtonClick('overs')}
-        >
-          Overs
-        </button>
+
       </nav>
       <br />
       <div className={selectedButton === 'commentary' ? 'visible ' : 'hidden'} >
@@ -53,9 +47,7 @@ const TeamScore = () => {
       <div className={selectedButton === 'squad' ? 'visible' : 'hidden'}>
         <h1><Squad/></h1>
       </div>
-      <div className={selectedButton === 'overs' ? 'visible' : 'hidden'}>
-        <h1><Overs /></h1>
-      </div>
+
     </div>
   );
 }
