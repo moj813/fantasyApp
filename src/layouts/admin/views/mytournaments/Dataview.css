@@ -1,0 +1,44 @@
+.icon-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .icon-actions {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .icon-actions span {
+    margin-right: 10px;
+    cursor: pointer;
+  }
+  
+  .gap {
+    cursor: pointer;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 10px;
+    z-index: 1;
+  }
+  
+  .dropdown-content p {
+    margin: 0;
+    padding: 10px 0;
+    border-bottom: 1px solid #ccc; /* Add a border between menu items */
+  }
+  
+  .dropdown-content p:last-child {
+    border-bottom: none; /* Remove the border from the last menu item */
+  }
+  
+  .icon-actions.active .dropdown-content {
+    display: block;
+  }
+  

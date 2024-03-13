@@ -9,18 +9,32 @@ import { Route, Routes } from "react-router-dom"
 import OpenRoute from "./component/OpenRoute";
 import PrivateRoute from "./component/PrivateRoute";
 
-import Admin from './layouts/admin/index'
-import User from './layouts/user/index'
-import HomeLayout from './layouts/auth/index';
-import Mytournaments from "./layouts/admin/views/mytournaments/Mytournaments";
-import LiveScore from "./layouts/user/views/LiveScore/LiveScore";
-import TeamScore from "./layouts/user/views/TeamScore/TeamScore";
-import Addtournaments from "./layouts/admin/views/mytournaments/Addtournaments";
+import Admin from './layouts/admin/index';
+import User from './layouts/user/index';
+
 import Login from "./layouts/auth/login/Login/Login";
 import Signup from './layouts/auth/signup/Signup'
 import Home from './layouts/auth/home/Home'
 import EmailVerify from "./layouts/auth/signup/EmailVerify";
 
+
+import LiveScore from "./layouts/user/views/LiveScore/LiveScore";
+import TeamScore from "./layouts/user/views/TeamScore/TeamScore";
+
+
+import HomeLayout from './layouts/auth/index';
+import Mytournaments from "./layouts/admin/views/mytournaments/Mytournaments";
+import Addtournaments from "./layouts/admin/views/mytournaments/Addtournaments";
+import Teams from "./layouts/admin/views/mytournaments/Teams"
+import Addteam from "./layouts/admin/views/mytournaments/Addteam";
+import Addplayer from "./layouts/admin/views/mytournaments/Addplayer";
+import Matches from "./layouts/admin/views/mytournaments/Matches";
+import Schedulematch from "./layouts/admin/views/mytournaments/Schedulematch";
+import Choose from "./layouts/admin/views/mytournaments/Choose";
+import Matchform from "./layouts/admin/views/mytournaments/Matchform";
+import Playingsquad from "./layouts/admin/views/mytournaments/Playingsquad";
+import Edit from "./layouts/admin/views/mytournaments/Edit";
+import Teamb from "./layouts/admin/views/mytournaments/Teamb";
 
 function App() {
 
@@ -61,6 +75,16 @@ function App() {
                                   <Route path="/admin/default" element={<>This is Admin Default</>} />
                                   <Route path="/admin/mytournaments" element={<Mytournaments />} />
                                   <Route path="/admin/mytournamnets/addtournaments" element={<Addtournaments />} />
+                                  <Route path="/admin/mytournamnets/teams" element={<Teams />}/>
+                                  <Route path="/admin/mytournamnets/Addteam" element={<Addteam />}/>
+                                  <Route path="/admin/mytournamnets/Addplayer" element={<Addplayer />}/>
+                                  <Route path="/admin/mytournaments/Matches" element={<Matches />}/>
+                                  <Route path="/admin/mytournaments/Schedulematch" element={<Schedulematch />} />
+                                  <Route path="/admin/mytournaments/Choose" element={<Choose />}/>
+                                  <Route path="/admin/mytournaments/Matchform" element={<Matchform />}/>
+                                  <Route path="/admin/mytournaments/Playingsquad" element={<Playingsquad />}/>
+                                  <Route path="/admin/mytournaments/Edit" element={<Edit />}/>
+                                  <Route path="/admin/mytournaments/Teamb" element={<Teamb />}/>
                                   <Route path="/admin*" element={<>404 Page Not Found</>} />
                                 </Route>
                             )

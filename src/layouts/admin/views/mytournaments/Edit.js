@@ -4,19 +4,11 @@ import { faEdit, faTrashAlt, faCog } from '@fortawesome/free-solid-svg-icons';
 import './Dataview.css';
 import { NavLink } from 'react-router-dom';
 
-
-const formatDate = (dateStr) => {
-  const date = new Date(dateStr);
-
-  return date.toLocaleDateString('en-GB', {
-    day: '2-digit',
-    month: '2-digit',
-    year: 'numeric'
-  });
-};
-
-const Dataview = (data) => {
-
+const Dataview = () => {
+  const [data, setData] = useState([
+    { id: 1, name: 'vatsal', startDate: '02/02/2024', endDate: '26/02/2024' },
+    // Add more data items as needed
+  ]);
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
@@ -25,10 +17,9 @@ const Dataview = (data) => {
     setIsDropdownOpen(!isDropdownOpen);
   };
 
-
-  const handleDeleteClick = () => {
+  const handleDeleteClick = (itemId) => {
     // Delete the entire list item by filtering out the item with the specified itemId
-    
+    setData((prevData) => prevData.filter((item) => item.id !== itemId));
   };
 
   const handleClick = useCallback(
@@ -50,30 +41,23 @@ const Dataview = (data) => {
       document.removeEventListener('click', handleClick);
     };
   }, [handleClick]);
-  
+
   return (
     <div>
-      {
-        console.log(data)
-      }
-      <ul>
-            {/* <li class="tourliname_18">{data.data.tournamentName}</li>
-            <li class="tourliitem_18">{formatDate(data.data.startDate)}</li>
-            <li class="tourliitem_18">{formatDate(data.data.lastDate)}</li>
-            <li class="tourliitem_18"><VscEdit /> <VscSettingsGear /></li> */}
-
-<React.Fragment key={data.id}>
-            <li className="tourliname_18">{data.data.tournamentName}</li>
-            <li className="tourliitem_18">{formatDate(data.data.startDate)}</li>
-            <li className="tourliitem_18">{formatDate(data.data.lastDate)}</li>
+      <ul className="icon-list">
+        {data.map((item) => (
+          <React.Fragment key={item.id}>
+            <li className="tourliname_18">{item.name}</li>
+            <li className="tourliitem_18">{item.startDate}</li>
+            <li className="tourliitem_18">{item.endDate}</li>
             <li className={`icon-actions${isDropdownOpen ? ' active' : ''}`} ref={dropdownRef}>
-              <NavLink to={"/admin/mytournamnets/addtournaments"}>
+              <NavLink to={"/admin/mytournaments/Choose"}>
               <span className="gap">
                 <FontAwesomeIcon icon={faEdit} />
               </span>
               </NavLink>
               
-              <span className="gap" onClick={() => handleDeleteClick(data.id)}>
+              <span className="gap" onClick={() => handleDeleteClick(item.id)}>
                 <FontAwesomeIcon icon={faTrashAlt} />
               </span>
               <span className="gap" onClick={toggleDropdown}>
@@ -81,22 +65,22 @@ const Dataview = (data) => {
               </span>
               {isDropdownOpen && (
                 <div className="dropdown-content">
-                  <NavLink to={"/admin/mytournamnets/teams"}>
-                  <p>Teams</p>
+                  <NavLink to={"/admin/mytournaments/Playingsquad"}>
+                  <p>Playing Squad</p>
                   </NavLink>
 
                   <NavLink to={"/admin/mytournaments/Schedulematch"}>
-                    <p>Matches</p>
+                    <p>Match Officials</p>
                   </NavLink>
                   
                 </div>
               )}
             </li>
           </React.Fragment>
-
-          </ul>
+        ))}
+      </ul>
     </div>
-  )
-}
+  );
+};
 
-export default Dataview
+export default Dataview;

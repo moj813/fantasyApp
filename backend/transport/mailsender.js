@@ -10,9 +10,6 @@ const mailSender = async (email, title, body) => {                            //
                     pass: process.env.MAIL_PASS,
                 }
             })
-            console.log("Cleared Stage 1")
-            console.log(process.env.MAIL_HOST);
-            console.log(title);
             console.log(body);
             
             let info = await transporter.sendMail({

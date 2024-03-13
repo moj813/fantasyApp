@@ -1,11 +1,12 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const otpGenerator = require("otp-generator");
 const otpModel = require("../model/otp");
+const otpGenerator = require("otp-generator");
 const userModel = require('../model/userDetails');
 const mailSender = require('../transport/mailsender');
 const otpTemplate = require("../emailBody/verificatioOtp");
 require("dotenv").config();
+
 
 //signUp
 const signUp = async (req, res) => {
@@ -17,7 +18,6 @@ const signUp = async (req, res) => {
       msg:"Fill All the Fields"
     })
   }
-
 
   const userPresent = await userModel.findOne({email:email});
 
@@ -80,21 +80,22 @@ const login = async (req, res) => {
             accountType:user.role,
         }
         const token = jwt.sign(payload, process.env.JWT_SECRET, {         // generate token (combination of header , payload , signature) 
-            expiresIn:"52h",                                               // set expiry time;
+            expiresIn:"72h",                                               // set expiry time;
         });
         user.token = token;
         user.password= undefined;
 
-        const options = {                                               //create cookie and send response
-            expires: new Date(Date.now() + 3*24*60*60*1000),
-            httpOnly:true,
-        }
-        res.cookie("token", token, options).status(200).json({
-            success:true,
-            token,
-            user,
-            message:'Logged in successfully',
-        })
+        const options = {
+          expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
+          httpOnly: false,
+      };
+      res.cookie("token", token , options);
+     return res.status(200).json({
+          success: true,
+          token,
+          user,
+          message: 'Logged in successfully',
+      });
   }
     else {
         return res.json({
@@ -139,11 +140,11 @@ const sendOTP = async (req, res) => {
     });
 
     let res2 = await mailSender(req.body.email , "Verification Code for CrickDelight" , otpTemplate(genratedOtp));
-
     res.json({
       success: true,
-      msg: "Something Went Wrong",
+      msg: "OTP Sent Successfully",
     });
+
   } catch {
     res.json({
       success: false,

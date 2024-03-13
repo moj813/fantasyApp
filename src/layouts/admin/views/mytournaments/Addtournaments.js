@@ -69,11 +69,8 @@ const Addtournaments = () => {
     e.preventDefault();
     if (error) {
       toast.error("Can't Submit Change the Event date");
-    } else {
-      toast.success("Submitted");
-    }
+    } 
     getDetails();
-    
   };
 
   return (
