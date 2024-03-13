@@ -1,5 +1,3 @@
-// Tournaments.js
-
 import React from 'react';
 import './Tournaments.css';
 
@@ -8,7 +6,7 @@ const Tournaments = ({ tournaments }) => {
     <div className="main-component">
       <h2>Tournaments</h2>
       <div className="tournament-list">
-        {tournaments.map((tournament, index) => (
+        {tournaments && tournaments.map((tournament, index) => (
           <div className="cards" key={index}>
             <div className="card">
               <span>{tournament.tournamentName}</span>
@@ -18,6 +16,7 @@ const Tournaments = ({ tournaments }) => {
             </div>
           </div>
         ))}
+        {!tournaments && <p>No tournaments available</p>}
       </div>
     </div>
   );
