@@ -19,8 +19,8 @@ import EmailVerify from "./layouts/auth/signup/EmailVerify";
 
 import LiveScore from "./layouts/user/views/LiveScore/LiveScore";
 import TeamScore from "./layouts/user/views/TeamScore/TeamScore";
+import ListTournament from "./layouts/user/views/Tournaments/ListTournament";
 
-import Tournaments from "./layouts/user/views/Tournaments/Tournaments";
 import HomeLayout from './layouts/auth/index';
 import Mytournaments from "./layouts/admin/views/mytournaments/Mytournaments";
 import Addtournaments from "./layouts/admin/views/mytournaments/Addtournaments";
@@ -95,9 +95,9 @@ function App() {
       { user?.role === "user" && (
                                       <Route path='/user' element={<User />}>
                                           <Route path="/user/default" element={<>This is User Default</>} />
-                                          <Route path="/user/tournaments" element={<Tournaments/>} />
                                           <Route path="/user/livescore" element={<LiveScore />} />
                                           <Route path="/user/livescore/:id" element={<TeamScore />} /> {/* Use element prop instead of component */}
+                                          <Route path="/user/tournaments" element={<ListTournament />} />
                                           <Route path="/user/*" element={<>404 Page Not Found</>} />
                                      </Route>
                                   )
