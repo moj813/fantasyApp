@@ -1,0 +1,52 @@
+.cards {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+
+
+.cards .card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  height: 25%;
+  width: 65%;
+  border-radius: 10px;
+  padding: 10px;
+  color: black;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  border: 2px solid #ccc;
+  cursor: pointer;
+  transition: 400ms;
+}
+
+.cards .card h2 {
+  margin-top: 10px;
+  font-size: 18px;
+  color: #333;
+}
+
+.cards .card h6 {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #999;
+  text-decoration: underline;
+}
+
+.cards .card p {
+  font-size: 16px;
+  color: #666;
+}
+
+.card:hover {
+  transform: scale(1.1, 1.1);
+}
+
+.cards:hover > .card:not(:hover) {
+  
+  transform: scale(0.9, 0.9);
+}

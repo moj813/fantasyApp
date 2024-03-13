@@ -8,7 +8,7 @@ import { Route, Routes } from "react-router-dom"
 
 import OpenRoute from "./component/OpenRoute";
 import PrivateRoute from "./component/PrivateRoute";
-
+import Tournaments from "./layouts/user/views/Tournaments/Tournaments";
 import Admin from './layouts/admin/index'
 import User from './layouts/user/index'
 import HomeLayout from './layouts/auth/index';
@@ -22,8 +22,8 @@ import Home from './layouts/auth/home/Home'
 import EmailVerify from "./layouts/auth/signup/EmailVerify";
 
 
-function App() {
 
+function App() {
 
   const { user } = useSelector((state) => state.profile)
 
@@ -60,6 +60,7 @@ function App() {
                                 <Route path='/admin' element={<PrivateRoute><Admin /></PrivateRoute>}>
                                   <Route path="/admin/default" element={<>This is Admin Default</>} />
                                   <Route path="/admin/mytournaments" element={<Mytournaments />} />
+                                  <Route path="/admin/livescore" element={<LiveScore />} />
                                   <Route path="/admin/mytournamnets/addtournaments" element={<Addtournaments />} />
                                   <Route path="/admin*" element={<>404 Page Not Found</>} />
                                 </Route>
@@ -71,7 +72,7 @@ function App() {
       { user?.role === "user" && (
                                       <Route path='/user' element={<User />}>
                                           <Route path="/user/default" element={<>This is User Default</>} />
-                                          <Route path="/user/mytournaments" element={<>This is User</>} />
+                                          <Route path="/user/tournaments" element={<Tournaments/>} />
                                           <Route path="/user/livescore" element={<LiveScore />} />
                                           <Route path="/user/livescore/:id" element={<TeamScore />} /> {/* Use element prop instead of component */}
                                           <Route path="/user/*" element={<>404 Page Not Found</>} />
