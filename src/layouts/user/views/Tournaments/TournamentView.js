@@ -16,7 +16,7 @@ const TournamentView = (tournament) => {
       <div className="cards">
         <div className="card">
           <span>{tournament.tournament.tournamentName}</span>
-          <h2>From {formatDate(tournament.tournament.startDate)} to {formatDate(tournament.tournament.endDate)}</h2>
+          <h2>From {formatDate(tournament.tournament.startDate)} to {formatDate(tournament.tournament.lastDate)}</h2>
           <p>{tournament.tournament.cityName}</p>
           <h6>Tap to enroll</h6>
         </div>

@@ -54,7 +54,7 @@ const Dataview = (data) => {
   return (
     <div>
       {
-        console.log(data)
+        console.log(data.data._id)
       }
       <ul>
             {/* <li class="tourliname_18">{data.data.tournamentName}</li>
@@ -81,7 +81,7 @@ const Dataview = (data) => {
               </span>
               {isDropdownOpen && (
                 <div className="dropdown-content">
-                  <NavLink to={"/admin/mytournamnets/teams"}>
+                  <NavLink to={`/admin/${data.data._id}/teams`}>
                   <p>Teams</p>
                   </NavLink>
 

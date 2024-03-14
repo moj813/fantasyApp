@@ -8,7 +8,6 @@ import { addtournament } from "../../../../services/operation/tournament";
 import "./Addtournaments.css";
 
 const Addtournaments = () => {
-
   const [error, setError] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -47,8 +46,8 @@ const Addtournaments = () => {
   const getDetails = () => {
     const tournamentName = document.getElementById("name").value;
     const cityName = document.getElementById("city").value;
-    const mobileNumber = document.getElementById("mcode").value;
-    const organiserName = document.getElementById("code").value;
+    const mobileNumber = document.getElementById("number").value;
+    const organiserName = document.getElementById("oraganizerName").value;
     const startDate = document.getElementById("sdate").value;
     const lastDate = document.getElementById("ldate").value;
 
@@ -61,116 +60,105 @@ const Addtournaments = () => {
       lastDate,
     };
     // console.log(data);
-    dispatch(addtournament(data , navigate));
+    dispatch(addtournament(data, navigate));
   };
 
-//function to handle Submit event 
+  //function to handle Submit event
   const handleOnSubmit = (e) => {
     e.preventDefault();
     if (error) {
       toast.error("Can't Submit Change the Event date");
-    } 
+    }
     getDetails();
   };
 
   return (
     <div className="box_18Atadd">
-      <form onSubmit={handleOnSubmit}>
-        <div className="form__group field">
-          <input
-            type="input"
-            class="form__field"
-            name="name"
-            id="name"
-            placeholder="Name Of Tournament"
-            required
-          />
-          <label for="name" class="form__label">
-            Tournament Name
-          </label>
-        </div>
+      <form
+        onSubmit={handleOnSubmit}
+        className="formContainerAtAddTournament_22"
+      >
+        <div>
+          <div className="inputFieldAtSignup_22">
+            <p>Tournament Name : *</p>
+            <input
+              type="text"
+              required
+              name="name"
+              id="name"
+              placeholder="Name Of Tournament"
+            />
+          </div>
 
-        <div className="form__group field">
-          <input
-            type="input"
-            class="form__field"
-            name="City"
-            id="city"
-            placeholder="City"
-            required
-          />
-          <label for="name" class="form__label">
-            City
-          </label>
-        </div>
+          <div className="inputFieldAtSignup_22">
+            <p>City : *</p>
+            <input
+              type="text"
+              name="City"
+              id="city"
+              placeholder="City"
+              required
+            />
+          </div>
 
-        <div class="sap">
-          <div className="form__group field">
+          <div className="inputFieldAtSignup_22">
+            <p>Monile Number : *</p>
             <input
               type="number"
-              class="form__fiel"
               name="code"
               placeholder="0000000000"
-              id="mcode"
+              id="number"
               required
             />
-            <label for="name" class="form__label">
-              Mobile No.
-            </label>
-          </div>
-
-          <div className="form__group field">
-            <input
-              type="input"
-              class="form__fiel"
-              name="code"
-              id="code"
-              placeholder="John Doe"
-              required
-            />
-            <label for="name" class="form__label">
-              Organiser Name
-            </label>
           </div>
         </div>
 
-        <div className="form__group field">
-          <input
-            type="date"
-            className="form__fiel"
-            name="sdate"
-            id="sdate"
-            required
-            onChange={handleStartDateChange}
-          />
-          <label for="name" className="form__label">
-            Start Date
-          </label>
+        <div>
+        <div className='inputFieldAtSignup_22'>
+            <p>Organiser Name : *</p>
+            <input 
+                type="input"
+                name="code"
+                id="oraganizerName"
+                placeholder="John Doe"
+                required
+            />
+          </div>
+
+          <div className='inputFieldAtSignup_22'>
+            <p>Start Date : *</p>
+            <input 
+                 type="date"
+                 name="sdate"
+                 id="sdate"
+                 required
+                 onChange={handleStartDateChange}
+            />
+          </div>
+
+          <div className='inputFieldAtSignup_22'>
+            <p>End Date : *</p>
+            <input 
+                 type="date"
+                 name="sdate"
+                 id="ldate"
+                 required
+                 onChange={handleLastDateChange}
+            />
+          </div>
+
         </div>
 
-        <div className="form__group field">
-          <input
-            type="date"
-            className="form__fiel"
-            placeholder=""
-            name="ldate"
-            id="ldate"
-            required
-            onChange={handleLastDateChange}
-          />
-          <label for="name" className="form__label">
-            Last Date
-          </label>
-        </div>
 
+        <div className="btnContainerAtAddTournament">
         <div className="sb">
-          <button
-            type="submit"
-            className={`${error ? "disable submit" : "submit"}`}
-          >
-            Submit
-          </button>
-        </div>
+            <button
+              type="submit"
+              className={`${error ? "disable submit" : "submit"}`}
+            >
+              Submit
+            </button>
+          </div></div>
       </form>
     </div>
   );

@@ -75,8 +75,8 @@ function App() {
                                   <Route path="/admin/mytournaments" element={<Mytournaments />} />
                                   <Route path="/admin/livescore" element={<LiveScore />} />
                                   <Route path="/admin/mytournamnets/addtournaments" element={<Addtournaments />} />
-                                  <Route path="/admin/mytournamnets/teams" element={<Teams />}/>
-                                  <Route path="/admin/mytournamnets/Addteam" element={<Addteam />}/>
+                                  <Route path="/admin/:tournamentID/teams" element={<Teams />}/>
+                                  <Route path="/admin/:tournamentID/addteam" element={<Addteam />}/>
                                   <Route path="/admin/mytournamnets/Addplayer" element={<Addplayer />}/>
                                   <Route path="/admin/mytournaments/Matches" element={<Matches />}/>
                                   <Route path="/admin/mytournaments/Schedulematch" element={<Schedulematch />} />

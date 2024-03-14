@@ -1,39 +1,34 @@
-import React from 'react'
-import './Tournaments.css'
-import TournamentView from './TournamentView';
+import React, { useEffect, useState } from "react";
+import TournamentView from "./TournamentView";
+import { findAllTournaments } from "../../../../services/operation/tournament";
+import "./Tournaments.css";
+
 const ListTournament = () => {
-    const data = [
-        {
-          tournamentName: "Charusat Box Cricket",
-          cityName: "asas",
-          organiserName: "Nishant Kathrotiya",
-          startDate: "2024-03-13T00:00:00.000Z",
-          lastDate: "2024-03-22T00:00:00.000Z",
-          __v: 0
-        },
-        {
-          tournamentName: "Charusat Box Cricket",
-          cityName: "asas",
-          organiserName: "Nishant Kathrotiya",
-          startDate: "2024-03-13T00:00:00.000Z",
-          lastDate: "2024-03-22T00:00:00.000Z",
-          __v: 0
-        }, {
-          tournamentName: "Charusat Box Cricket",
-          cityName: "asas",
-          organiserName: "Nishant Kathrotiya",
-          startDate: "2024-03-13T00:00:00.000Z",
-          lastDate: "2024-03-22T00:00:00.000Z",
-          __v: 0
-        }
-      ];
+  const [tournaments, setTournaments] = useState([]);
+  const [loading, setLoading] = useState(false);
+  useEffect(()=>{
+    findAllTournaments(setTournaments,setLoading);
+  },[])
+
   return (
     <div>
-        {
-           data.map((tournament)=><TournamentView tournament={tournament} />)
-        }
+      {loading ? (
+        <h1>Loading</h1>
+      ) : (
+        <>
+          {tournaments.length === 0 ? (
+            <h1>No Data Found</h1>
+          ) : (
+            <>
+              {tournaments.map((tournament) => (
+                <TournamentView tournament={tournament}/>
+              ))}
+            </>
+          )}
+        </>
+      )}
     </div>
-  )
-}
+  );
+};
 
-export default ListTournament
+export default ListTournament;
