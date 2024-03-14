@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink , Link} from 'react-router-dom';
 
 const formatDate = (dateStr) => {
   const date = new Date(dateStr);
@@ -10,18 +11,17 @@ const formatDate = (dateStr) => {
   });
 };
 
-const TournamentView = (tournament) => {
+const TournamentView = ({ tournament }) => {
   return (
-    <div className="list-view">
-      <div className="cards">
+      <div className="list-view">
         <div className="card">
-          <span>{tournament.tournament.tournamentName}</span>
-          <h2>From {formatDate(tournament.tournament.startDate)} to {formatDate(tournament.tournament.lastDate)}</h2>
-          <p>{tournament.tournament.cityName}</p>
+          <h2>{tournament.tournamentName}</h2>
+          <p className="datevire_32">From {formatDate(tournament.startDate)} to {formatDate(tournament.endDate)}</p>
+          <p>{tournament.cityName}</p>
+
           <h6>Tap to enroll</h6>
         </div>
       </div>
-    </div>
   );
 };
 
