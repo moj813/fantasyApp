@@ -25,6 +25,7 @@ import HomeLayout from './layouts/auth/index';
 import Mytournaments from "./layouts/admin/views/mytournaments/Mytournaments";
 import Addtournaments from "./layouts/admin/views/mytournaments/Addtournaments";
 import Teams from "./layouts/admin/views/mytournaments/Teams"
+import TeamPlayers from "./layouts/admin/views/mytournaments/TeamPlayers";
 import Addteam from "./layouts/admin/views/mytournaments/Addteam";
 import Addplayer from "./layouts/admin/views/mytournaments/Addplayer";
 import Matches from "./layouts/admin/views/mytournaments/Matches";
@@ -77,14 +78,15 @@ function App() {
                                   <Route path="/admin/mytournamnets/addtournaments" element={<Addtournaments />} />
                                   <Route path="/admin/:tournamentID/teams" element={<Teams />}/>
                                   <Route path="/admin/:tournamentID/addteam" element={<Addteam />}/>
-                                  <Route path="/admin/mytournamnets/Addplayer" element={<Addplayer />}/>
+                                  <Route path="/admin/:tournamentID/team/:teamID/addplayer" element={<Addplayer />}/>
                                   <Route path="/admin/mytournaments/Matches" element={<Matches />}/>
-                                  <Route path="/admin/mytournaments/Schedulematch" element={<Schedulematch />} />
-                                  <Route path="/admin/mytournaments/Choose" element={<Choose />}/>
-                                  <Route path="/admin/mytournaments/Matchform" element={<Matchform />}/>
+                                  <Route path="/admin/:tournamentID/Schedulematch" element={<Schedulematch />} />
+                                  <Route path="/admin/:tournamentID/choose" element={<Choose />}/>
+                                  <Route path="/admin/:tournamentID/matchform" element={<Matchform />}/>
                                   <Route path="/admin/mytournaments/Playingsquad" element={<Playingsquad />}/>
                                   <Route path="/admin/mytournaments/Edit" element={<Edit />}/>
                                   <Route path="/admin/mytournaments/Teamb" element={<Teamb />}/>
+                                  <Route path="/admin/:tournamentID/team/:teamID/player" element={<TeamPlayers />}/>
                                   <Route path="/admin*" element={<>404 Page Not Found</>} />
                                 </Route>
                             )
@@ -98,8 +100,8 @@ function App() {
                                           <Route path="/user/livescore" element={<LiveScore />} />
                                           <Route path="/user/livescore/:id" element={<TeamScore />} /> {/* Use element prop instead of component */}
                                           <Route path="/user/tournaments" element={<ListTournament />} />
-                                          <Route path="/user/tournaments/matches" element={<LiveScore />} />
-                                          <Route path={`/user/tournament/:tournmentID/match`} element={<LiveScore/>} />
+                                          <Route path="/user/:tournamentID/matche/:matchID" element={<LiveScore />} />
+                                          <Route path={`/user/tournament/:tournamentID/match`} element={<LiveScore/>} />
                                           <Route path="/user/*" element={<>404 Page Not Found</>} />
                                      </Route>
                                   )

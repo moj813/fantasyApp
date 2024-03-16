@@ -9,7 +9,7 @@
 }
 
 
-.cards .list-view .card {
+ .list-view .card {
   display: flex;
   flex-direction: column;
   align-items: flex-start;

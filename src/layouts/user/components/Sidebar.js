@@ -8,10 +8,8 @@ function Sidebar({toggleHandler}) {
   const linkItems = [
     { icon: 'home-outline', text: 'Home' },
     { icon: 'cube-outline', text: 'Live Score', path:'/user/livescore' },
-    { icon: 'search-outline', text: 'Search' },
-    { icon: 'bookmark-outline', text: 'Bookmarks' },
-    { icon: 'cog-outline', text: 'Settings' },
-    {icon: 'cog-outline', text: 'My Contest', path:'/user/mycontest'}
+    {icon: 'cog-outline', text: 'My Contest', path:'/user/mycontest'},
+    {icon: 'cog-outline', text: 'Tournaments', path:'/user/tournaments'},
   ];
   const handleLinkItemClick = (index) => {
     setSelectedIndex(index);

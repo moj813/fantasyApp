@@ -1,15 +1,10 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit, faTrashAlt, faCog } from '@fortawesome/free-solid-svg-icons';
-import './Dataview.css';
-import { NavLink } from 'react-router-dom';
+import React, { useState, useEffect, useRef, useCallback } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEdit, faTrashAlt, faCog } from "@fortawesome/free-solid-svg-icons";
+import "./Dataview.css";
+import { NavLink } from "react-router-dom";
 
-const Dataview = () => {
-  const [data, setData] = useState([
-    { id: 1, name: 'vatsal', startDate: '02/02/2024', endDate: '26/02/2024' },
-    // Add more data items as needed
-  ]);
-
+const Dataview = ({ item }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
 
@@ -17,10 +12,7 @@ const Dataview = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
 
-  const handleDeleteClick = (itemId) => {
-    // Delete the entire list item by filtering out the item with the specified itemId
-    setData((prevData) => prevData.filter((item) => item.id !== itemId));
-  };
+  const handleDeleteClick = (itemId) => {};
 
   const handleClick = useCallback(
     (event) => {
@@ -34,50 +26,67 @@ const Dataview = () => {
     [setIsDropdownOpen]
   );
 
+  const formatDate = (dateString) => {
+    const dateTime = new Date(dateString);
+    const day = dateTime.getDate();
+    const month = dateTime.getMonth() + 1;
+    const year = dateTime.getFullYear();
+    const hours = dateTime.getHours();
+    const minutes = dateTime.getMinutes();
+
+    return `${day < 10 ? "0" : ""}${day}-${
+      month < 10 ? "0" : ""
+    }${month}-${year} ${hours < 10 ? "0" : ""}${hours}:${
+      minutes < 10 ? "0" : ""
+    }${minutes}`;
+  };
+
   useEffect(() => {
-    document.addEventListener('click', handleClick);
+    document.addEventListener("click", handleClick);
 
     return () => {
-      document.removeEventListener('click', handleClick);
+      document.removeEventListener("click", handleClick);
     };
   }, [handleClick]);
 
   return (
     <div>
       <ul className="icon-list">
-        {data.map((item) => (
-          <React.Fragment key={item.id}>
-            <li className="tourliname_18">{item.name}</li>
-            <li className="tourliitem_18">{item.startDate}</li>
-            <li className="tourliitem_18">{item.endDate}</li>
-            <li className={`icon-actions${isDropdownOpen ? ' active' : ''}`} ref={dropdownRef}>
-              <NavLink to={"/admin/mytournaments/Choose"}>
+        <React.Fragment key={item.id}>
+          <li className="tourliname_18">
+            {item.teamAName} Vs {item.teamBName}
+          </li>
+          <li className="tourliitem_18">{item.city}</li>
+          <li className="tourliitem_18">{formatDate(item.matchTime)}</li>
+          <li
+            className={`icon-actions${isDropdownOpen ? " active" : ""}`}
+            ref={dropdownRef}
+          >
+            <NavLink to={"/admin/mytournaments/Choose"}>
               <span className="gap">
                 <FontAwesomeIcon icon={faEdit} />
               </span>
-              </NavLink>
-              
-              <span className="gap" onClick={() => handleDeleteClick(item.id)}>
-                <FontAwesomeIcon icon={faTrashAlt} />
-              </span>
-              <span className="gap" onClick={toggleDropdown}>
-                <FontAwesomeIcon icon={faCog} />
-              </span>
-              {isDropdownOpen && (
-                <div className="dropdown-content">
-                  <NavLink to={"/admin/mytournaments/Playingsquad"}>
-                  <p>Playing Squad</p>
-                  </NavLink>
+            </NavLink>
 
-                  <NavLink to={"/admin/mytournaments/Schedulematch"}>
-                    <p>Match Officials</p>
-                  </NavLink>
-                  
-                </div>
-              )}
-            </li>
-          </React.Fragment>
-        ))}
+            <span className="gap" onClick={() => handleDeleteClick(item.id)}>
+              <FontAwesomeIcon icon={faTrashAlt} />
+            </span>
+            <span className="gap" onClick={toggleDropdown}>
+              <FontAwesomeIcon icon={faCog} />
+            </span>
+            {isDropdownOpen && (
+              <div className="dropdown-content">
+                <NavLink to={"/admin/mytournaments/Playingsquad"}>
+                  <p>Playing Squad</p>
+                </NavLink>
+
+                <NavLink to={"/admin/mytournaments/Schedulematch"}>
+                  <p>Match Officials</p>
+                </NavLink>
+              </div>
+            )}
+          </li>
+        </React.Fragment>
       </ul>
     </div>
   );

@@ -2,6 +2,7 @@ import { toast } from "react-toastify";
 
 import { apiConnector } from "../connector";
 import { logout } from './authApi';
+import { setTeams , setLoading} from '../../slices/match';
 
 
 export function addtournament(data,navigate) {
@@ -113,12 +114,110 @@ export async function addTeam(teamName, cityName,tournamentId){
 }
 
 
-export async function findMyTeam(tournamentID,setMyTeam,setLoading){
+export async function findMyTeam(tournamentID,setMyTeam,setLoadingw){
+    try{
+      setLoadingw(true);
+      const response = await apiConnector(
+        "GET",
+        `http://localhost:4000/admin/tournament/myteams?tournamentId=${tournamentID}`,
+      );
+    
+     if(!response.data.success){
+      setLoadingw(false);
+      throw new Error(response.data.msg);
+     }
+  
+     if(response.data.success){
+      setMyTeam(response.data.result) ;
+     }
+      setLoadingw(false);
+    }catch(error){
+      setLoadingw(false);
+      toast.error("Could Get Your Tournament");
+    }
+
+}
+
+
+
+
+export function findMyTeamDisptach(tournamentID) {
+  return async (dispatch) => {
+    const toastId = toast.loading("Loading...");
+    dispatch(setLoading(true));
+    try {
+      const response = await apiConnector(
+        "GET",
+        `http://localhost:4000/admin/tournament/myteams?tournamentId=${tournamentID}`
+      );
+
+      if (!response.data.success) {
+        throw new Error(response.data.msg);
+      }
+
+      if (response.data.success) {
+        dispatch(setTeams(response.data.result));
+      }
+    } catch (error) {
+      toast.error("Could Get Your Tournament");
+    }
+    dispatch(setLoading(false));
+    toast.dismiss(toastId);
+  };
+}
+
+export async function registerMatch(teamAID , teamBID,teamAName,teamBName,noOfOvers, oversPerBowler, city,ground,date,time,tournamentID){
+  try{
+    
+    const response = await apiConnector(
+      "POST",
+      `http://localhost:4000/admin/tournament/addmatch`,{
+        teamAID , teamBID,teamAName,teamBName,noOfOvers, oversPerBowler, city, ground,date,time,tournamentID
+      }
+    );
+
+    if (!response.data.success) {
+      throw new Error(response.data.msg);
+    }
+
+    if (response.data.success) {
+      toast.success("Match Registred")
+    }
+  }catch(error){
+    toast.error("Match Not Created")
+  }
+}
+
+export async function getMyMatches(tournamentID , setLoading , setData) {
+  setLoading(true);
+  try {
+
+    const response = await apiConnector(
+      "GET",
+      `http://localhost:4000/admin/tournament/getmymatches?tournamentid=${tournamentID}`
+    );
+
+    if (!response.data.success) {
+      throw new Error(response.data.msg);
+    }
+
+    if (response.data.success) {
+      setData(response.data.data)
+    }
+
+  } catch (error) {
+    toast.error("Can not Able to Fetch Matches");
+  }
+  setLoading(false);
+}
+
+
+export async function findMatch(tournamentID,setLoading,setData){
   try{
     setLoading(true);
     const response = await apiConnector(
       "GET",
-      `http://localhost:4000/admin/tournament/myteams?tournamentId=${tournamentID}`,
+      `http://localhost:4000/public/matches?tournamentid=${tournamentID}`,
     );
   
    if(!response.data.success){
@@ -127,12 +226,12 @@ export async function findMyTeam(tournamentID,setMyTeam,setLoading){
    }
 
    if(response.data.success){
-    setMyTeam(response.data.result) ;
+    setData(response.data.data) ;
    }
     setLoading(false);
   }catch(error){
     setLoading(false);
-    toast.error("Could Get Your Tournament");
+    toast.error("Could Get Matches");
   }
 
 }

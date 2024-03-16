@@ -20,7 +20,7 @@ const ListTournament = () => {
           {tournaments.length === 0 ? (
             <h1>No Data Found</h1>
           ) : (
-            <>
+            <div className="cards">
               {tournaments.map((tournament) => (
                 <NavLink
                   className="navitem"
@@ -29,7 +29,7 @@ const ListTournament = () => {
                   <TournamentView tournament={tournament} />
                 </NavLink>
               ))}
-            </>
+            </div>
           )}
         </>
       )}

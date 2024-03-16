@@ -42,6 +42,7 @@ const Addteam = ({ onAddTeam }) => {
           onChange={handleChange}
           className="form-control"
           placeholder="Enter team name"
+          required
         />
       </div>
       <div className="form-group">
@@ -54,6 +55,7 @@ const Addteam = ({ onAddTeam }) => {
           onChange={handleChange}
           className="form-control"
           placeholder="Enter city"
+          required
         />
       </div>
       <button type="submit" className="btn btn-primary">

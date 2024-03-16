@@ -3,7 +3,7 @@ import './TeamScore.css';
 import Commentry from './Commentry/Commentry';
 import Scorecard from './Scorecard/Scorecard';
 import Squad from './Squad/Squad';
-import TeamPlayers from './TeamPlayers/TeamPlyers';
+// import TeamPlayers from './TeamPlayers/TeamPlyers';
 
 
 const TeamScore = () => {
@@ -56,7 +56,7 @@ const TeamScore = () => {
         <h1><Squad/></h1>
       </div>
       <div className={selectedButton === 'TeamPlayers' ? 'visible' : 'hidden'}>
-        <h1><TeamPlayers/></h1>
+        {/* <h1><TeamPlayers/></h1> */}
       </div>
 
     </div>

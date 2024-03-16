@@ -85,7 +85,7 @@ const Dataview = (data) => {
                   <p>Teams</p>
                   </NavLink>
 
-                  <NavLink to={"/admin/mytournaments/Schedulematch"}>
+                  <NavLink to={`/admin/${data.data._id}/Schedulematch`}>
                     <p>Matches</p>
                   </NavLink>
                   
