@@ -1,11 +1,11 @@
 .score-card {
-  border: 2px shadow #ccc;
+  border: 1px solid #ccc;
   border-radius: 5px;
   padding: 20px;
   margin-bottom: 20px;
   overflow: auto;
   scrollbar-width: none;
-  max-height: 400px;
+  max-height: 60vh;
 }
 
 .team-name {

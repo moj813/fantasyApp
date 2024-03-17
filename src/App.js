@@ -97,13 +97,11 @@ function App() {
       { user?.role === "user" && (
                                       <Route path='/user' element={<User />}>
                                           <Route path="/user/default" element={<>This is User Default</>} />
-                                          <Route path="/user/livescore" element={<LiveScore />} />
-                                          <Route path="/user/livescore/:id" element={<TeamScore />} /> {/* Use element prop instead of component */}
                                           <Route path="/user/tournaments" element={<ListTournament />} />
-                                          <Route path="/user/:tournamentID/matche/:matchID" element={<LiveScore />} />
                                           <Route path={`/user/tournament/:tournamentID/match`} element={<LiveScore/>} />
+                                          <Route path="/user/:tournamentID/match/:matchID" element={<TeamScore />} />
                                           <Route path="/user/*" element={<>404 Page Not Found</>} />
-                                     </Route>
+                                      </Route>
                                   )
       }
 

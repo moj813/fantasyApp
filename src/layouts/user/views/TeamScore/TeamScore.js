@@ -37,12 +37,6 @@ const TeamScore = () => {
         >
           Squad
         </button>
-        <button
-          className={selectedButton === 'TeamPlayers' ? 'selected' : ''}
-          onClick={() => handleButtonClick('TeamPlayers')}
-        >
-          TeamPlayers
-        </button>
 
       </nav>
       <br />
@@ -54,9 +48,6 @@ const TeamScore = () => {
       </div>
       <div className={selectedButton === 'squad' ? 'visible' : 'hidden'}>
         <h1><Squad/></h1>
-      </div>
-      <div className={selectedButton === 'TeamPlayers' ? 'visible' : 'hidden'}>
-        {/* <h1><TeamPlayers/></h1> */}
       </div>
 
     </div>
