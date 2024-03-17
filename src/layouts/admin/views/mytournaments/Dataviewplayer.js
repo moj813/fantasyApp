@@ -14,6 +14,7 @@ const Dataviewplayer = ({data}) => {
         <React.Fragment key={data._id}>
 
           <li className="tourliname_18">{data.playerName}</li>
+          <li className="tourliname_18">Batsamn</li>
 
           <li className="icon-actions">
 

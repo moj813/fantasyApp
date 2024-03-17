@@ -83,9 +83,9 @@ function App() {
                                   <Route path="/admin/:tournamentID/Schedulematch" element={<Schedulematch />} />
                                   <Route path="/admin/:tournamentID/choose" element={<Choose />}/>
                                   <Route path="/admin/:tournamentID/matchform" element={<Matchform />}/>
-                                  <Route path="/admin/mytournaments/Playingsquad" element={<Playingsquad />}/>
+                                  <Route path="/admin/:tournamentID/match/:matchID" element={<Playingsquad />}/>
                                   <Route path="/admin/mytournaments/Edit" element={<Edit />}/>
-                                  <Route path="/admin/mytournaments/Teamb" element={<Teamb />}/>
+                                  <Route path="/admin/mytournaments/Teamb" element={<Teamb />} />
                                   <Route path="/admin/:tournamentID/team/:teamID/player" element={<TeamPlayers />}/>
                                   <Route path="/admin*" element={<>404 Page Not Found</>} />
                                 </Route>

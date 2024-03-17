@@ -7,9 +7,9 @@ const router = express.Router()
 // Import the required controllers and middleware functions
 const { isLoggedin , isUser , isAdmin } = require('../middleware/AuthMiddleware');
 const {addTeam , getMyTeams} = require("../controller/Team");
-const { addPlayer , findPlayer } = require("../controller/Player");
+const { addPlayer , findPlayer ,findTotalPLayer } = require("../controller/Player");
 const {addTournament , getAllTournament , getTournamentForUser} = require('../controller/Tournament');
-const { addMatch , getAllMatches , getMyMatches } = require("../controller/match");
+const { addMatch , getAllMatches , getMyMatches , addPlaying } = require("../controller/match");
 
 
 
@@ -26,7 +26,9 @@ router.post("/addplayer",isLoggedin,isAdmin, addPlayer );
 router.get("/findmyplayer",isLoggedin,isAdmin,findPlayer);
 router.post("/addmatch",isLoggedin,isAdmin,addMatch);
 router.get("/getallmatches",getAllMatches);    
-router.get("/getmymatches",getMyMatches);  
+router.get("/getmymatches",getMyMatches);
+router.get("/findtotalplayer" , findTotalPLayer);
+router.post("/addplaying11",isLoggedin,isAdmin , addPlaying); 
 
 
 

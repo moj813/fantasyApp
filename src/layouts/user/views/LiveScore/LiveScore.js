@@ -7,7 +7,6 @@ import "./LiveScore.css";
 
 const LiveScore = () => {
   const { tournamentID } = useParams();
-  console.log(tournamentID);
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
 
@@ -20,7 +19,7 @@ const LiveScore = () => {
 
   useEffect(() => {
     findMatch(tournamentID, setLoading, setData);
-  }, []);
+  }, [tournamentID]);
   return (
     <div className="scoreCard-32">
       {loading ? (

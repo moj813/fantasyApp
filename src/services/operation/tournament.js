@@ -235,3 +235,27 @@ export async function findMatch(tournamentID,setLoading,setData){
   }
 
 }
+
+
+export async function addPlaying11(matchID,teamAPlaying , teamBPlaying , navigate){
+  const toastId = toast.loading("Loading");
+  try{
+    
+    const response = await apiConnector(
+      "POST",
+      `http://localhost:4000/admin/tournament/addplaying11`,
+      {matchID,teamAPlaying, teamBPlaying}
+    );
+    if(!response.data.success){
+      throw new Error(response.data.msg);
+     }
+     if(response.data.success){
+      navigate(-1)
+      toast.success("Player Set")
+     }
+  }catch(error){
+    setLoading(false);
+    toast.error("Could Set Player");
+  }
+  toast.dismiss(toastId);
+}

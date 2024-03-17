@@ -13,7 +13,8 @@ const Schedulematch = () => {
 
   useEffect(()=>{
     getMyMatches(tournamentID , setLoading , setData);
-  },[])
+    console.log(data)
+  },[tournamentID])
 
   return (
     <div className="container_18">

@@ -16,8 +16,11 @@ const TournamentView = ({ tournament }) => {
       <div className="list-view">
         <div className="card">
           <h2>{tournament.tournamentName}</h2>
-          <p className="datevire_32">From {formatDate(tournament.startDate)} to {formatDate(tournament.endDate)}</p>
-          <p>{tournament.cityName}</p>
+          <p className="datevire_32">From {formatDate(tournament.startDate)} to {formatDate(tournament.lastDate)}</p>
+          {
+            console.log(tournament)
+          }
+          <p>City : {tournament.cityName}</p>
 
           <h6>Tap to enroll</h6>
         </div>

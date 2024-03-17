@@ -52,6 +52,9 @@ const Dataview = ({ item }) => {
   return (
     <div>
       <ul className="icon-list">
+        {
+          console.log(item)
+        }
         <React.Fragment key={item.id}>
           <li className="tourliname_18">
             {item.teamAName} Vs {item.teamBName}
@@ -76,7 +79,7 @@ const Dataview = ({ item }) => {
             </span>
             {isDropdownOpen && (
               <div className="dropdown-content">
-                <NavLink to={"/admin/mytournaments/Playingsquad"}>
+                <NavLink to={`/admin/${item.tournamentID}/match/${item._id}`}>
                   <p>Playing Squad</p>
                 </NavLink>
 

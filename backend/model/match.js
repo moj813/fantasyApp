@@ -19,6 +19,16 @@ const matchSchema = new mongoose.Schema({
         require:true,
         ref:"team"
     },
+    teamAplaying:[{
+        type:mongoose.Schema.Types.ObjectId,
+        require:true,
+        ref:"player"
+    }],
+    teamBplaying:[{
+        type:mongoose.Schema.Types.ObjectId,
+        require:true,
+        ref:"player"
+    }],
     noOfOvers:{
         type:Number,
         require:true

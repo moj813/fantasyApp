@@ -55,3 +55,31 @@ export async function findPlayer(setLoading,setPlayers,teamID){
 
 }
 
+
+
+
+
+export async function findAllPLayerOfMatch(setLoading,setTeamA,setTeamB,matchID){
+  try{
+    setLoading(true);
+    const response = await apiConnector(
+      "GET",
+      `http://localhost:4000/admin/tournament/findtotalplayer?matchid=${matchID}`,
+    );
+  
+   if(!response.data.success){
+    setLoading(false);
+    throw new Error(response.data.msg);
+   }
+
+   if(response.data.success){
+    setTeamA(response.data.teamAplayers);
+    setTeamB(response.data.teamBplayers);
+   }
+    setLoading(false);
+  }catch(error){
+    setLoading(false);
+    toast.error("Could Get Your Players");
+  }
+
+}

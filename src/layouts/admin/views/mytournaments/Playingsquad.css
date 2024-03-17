@@ -5,6 +5,12 @@
     padding: 2rem;
     max-width: 600px;
     margin: 0 auto;
+    background-color: #ffffff;
+    border-radius: 5px;
+    border:1px solid #ccc;
+    width: 80vw !important;
+    max-height: 80vh;
+    overflow: auto;
   }
   
   .player-list {

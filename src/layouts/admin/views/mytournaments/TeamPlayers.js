@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import { findMyTeam } from "../../../../services/operation/tournament";
 import { findPlayer } from "../../../../services/operation/player";
+import Test from "./Test";
 import "./Teams.css";
 const TeamPlayers = () => {
   const { tournamentID, teamID } = useParams();
@@ -35,11 +36,14 @@ const TeamPlayers = () => {
                     <div className="list_18">
                       <ul>
                         <li class="tourliname_18">Player Name</li>
+                        <li class="tourliitem_18">Type</li>
                         <li class="tourliitem_18">Actions</li>
                       </ul>
                       {players.map((data) => (
                         <Dataviewplayer data={data} key={data._id} />
                       ))}
+                      {/* <Test players={players}/> */}
+
                     </div>
                   }
                 </>
