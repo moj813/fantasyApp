@@ -1,10 +1,40 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './TeamPlayers.css';
 
 const TeamPlayers = () => {
+  const [selectedPlayers, setSelectedPlayers] = useState([]);
+
   // Sample player data
-  const playersTeam1 = Array.from({ length: 15 }, (_, index) => ({ name: `Player ${index + 1}` }));
-  const playersTeam2 = Array.from({ length: 15 }, (_, index) => ({ name: `Player A${index + 1}` }));
+  const playersTeam1 = Array.from({ length: 15 }, (_, index) => ({ name: `Player ${index + 1}`, id: `team1-${index}` }));
+  const playersTeam2 = Array.from({ length: 15 }, (_, index) => ({ name: `Player A${index + 1}`, id: `team2-${index}` }));
+
+  const handlePlayerSelect = (player) => {
+    const index = selectedPlayers.findIndex(selectedPlayer => selectedPlayer.id === player.id);
+    if (index === -1) {
+      if (selectedPlayers.length < 12) {
+        setSelectedPlayers([...selectedPlayers, { ...player }]);
+      } else {
+        toast.warning("You can only select up to 12 players");
+      }
+    } else {
+      const updatedPlayers = selectedPlayers.filter(selectedPlayer => selectedPlayer.id !== player.id);
+      setSelectedPlayers(updatedPlayers);
+    }
+  };
+
+  const handleSave = () => {
+    if(selectedPlayers.length < 12){
+      toast.warning("Please select at least 12 players");
+    } else {
+      // Do something with selectedPlayers, e.g., send to server
+      console.log("Selected players:", selectedPlayers);
+      toast.success("Selected players saved successfully");
+      // Reset selectedPlayers after saving if needed
+      setSelectedPlayers([]);
+    }
+  };
 
   return (
     <div className="squad-container">
@@ -13,8 +43,18 @@ const TeamPlayers = () => {
         <div className="players-list">
           {playersTeam1.map((player, index) => (
             <div className="player" key={index}>
-              <input type="checkbox" id={`player-${index}`} name={`player-${index}`} />
-              <label htmlFor={`player-${index}`}>{player.name}</label>
+              <input
+                type="checkbox"
+                id={`team1-${index}`}
+                className="customCheckBoxInput"
+                checked={selectedPlayers.some(selectedPlayer => selectedPlayer.id === player.id)}
+                onChange={() => handlePlayerSelect(player)}
+              />
+              <label htmlFor={`team1-${index}`} className="customCheckBoxWrapper">
+                <div className="customCheckBox">
+                  <div className="inner">{player.name}</div>
+                </div>
+              </label>
             </div>
           ))}
         </div>
@@ -24,11 +64,24 @@ const TeamPlayers = () => {
         <div className="players-list">
           {playersTeam2.map((player, index) => (
             <div className="player" key={index}>
-              <input type="checkbox" id={`player-A${index}`} name={`player-A${index}`} />
-              <label htmlFor={`player-A${index}`}>{player.name}</label>
+              <input
+                type="checkbox"
+                id={`team2-${index}`}
+                className="customCheckBoxInput"
+                checked={selectedPlayers.some(selectedPlayer => selectedPlayer.id === player.id)}
+                onChange={() => handlePlayerSelect(player)}
+              />
+              <label htmlFor={`team2-${index}`} className="customCheckBoxWrapper">
+                <div className="customCheckBox">
+                  <div className="inner">{player.name}</div>
+                </div>
+              </label>
             </div>
           ))}
         </div>
+      </div>
+      <div className="save-button-container">
+        <button className="save-button" onClick={handleSave}>Save</button>
       </div>
     </div>
   );

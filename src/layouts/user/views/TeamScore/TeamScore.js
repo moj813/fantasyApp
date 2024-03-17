@@ -3,7 +3,7 @@ import './TeamScore.css';
 import Commentry from './Commentry/Commentry';
 import Scorecard from './Scorecard/Scorecard';
 import Squad from './Squad/Squad';
-import TeamPlayers from './TeamPlayers/TeamPlyers';
+import TeamPlayers from '../Tournaments/TeamPlayers/TeamPlayers';
 
 
 const TeamScore = () => {
