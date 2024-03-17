@@ -28,9 +28,28 @@ const TeamPlayers = () => {
     if(selectedPlayers.length < 12){
       toast.warning("Please select at least 12 players");
     } else {
-      // Do something with selectedPlayers, e.g., send to server
-      console.log("Selected players:", selectedPlayers);
+      // Create an array to store selected players
+      const selectedPlayersArray = [];
+
+      // Filter selected players from both teams and add them to the array
+      playersTeam1.forEach(player => {
+        if (selectedPlayers.find(selectedPlayer => selectedPlayer.id === player.id)) {
+          selectedPlayersArray.push(player);
+        }
+      });
+
+      playersTeam2.forEach(player => {
+        if (selectedPlayers.find(selectedPlayer => selectedPlayer.id === player.id)) {
+          selectedPlayersArray.push(player);
+        }
+      });
+
+      // Do something with selectedPlayersArray, e.g., send it to the server
+      console.log("Selected players:", selectedPlayersArray);
+
+      // Show success toast
       toast.success("Selected players saved successfully");
+
       // Reset selectedPlayers after saving if needed
       setSelectedPlayers([]);
     }
