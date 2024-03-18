@@ -4,6 +4,7 @@ import Commentry from './Commentry/Commentry';
 import Scorecard from './Scorecard/Scorecard';
 import Squad from './Squad/Squad';
 import TeamPlayers from '../Tournaments/TeamPlayers/TeamPlayers';
+import Contests from '../Tournaments/TeamPlayers/Contests/Contests';
 
 
 const TeamScore = () => {
@@ -43,6 +44,12 @@ const TeamScore = () => {
         >
           TeamPlayers
         </button>
+        <button
+          className={selectedButton === 'Contests' ? 'selected' : ''}
+          onClick={() => handleButtonClick('Contests')}
+        >
+          Contests
+        </button>
 
       </nav>
       <br />
@@ -57,6 +64,9 @@ const TeamScore = () => {
       </div>
       <div className={selectedButton === 'TeamPlayers' ? 'visible' : 'hidden'}>
         <h1><TeamPlayers/></h1>
+      </div>
+      <div className={selectedButton === 'Contests' ? 'visible' : 'hidden'}>
+        <h1><Contests/></h1>
       </div>
 
     </div>

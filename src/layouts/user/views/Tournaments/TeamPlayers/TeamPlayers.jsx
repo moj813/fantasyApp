@@ -56,6 +56,7 @@ const TeamPlayers = () => {
   };
 
   return (
+      <div className='testClass'>
     <div className="squad-container">
       <div className="team-section">
         <h2>Team 1</h2> 
@@ -98,6 +99,7 @@ const TeamPlayers = () => {
             </div>
           ))}
         </div>
+      </div>
       </div>
       <div className="save-button-container">
         <button className="save-button" onClick={handleSave}>Save</button>

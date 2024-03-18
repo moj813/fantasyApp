@@ -4,6 +4,7 @@
 }
 
 .customCheckBox {
+  background-color: transparent;
   width: 400px;
   position: relative;
   overflow: hidden;
@@ -42,6 +43,7 @@
 
 .customCheckBox:hover .inner {
   transform: translateY(-2px);
+
 }
 
 /* Multiple Checkboxes can be chained together for a radio input */
@@ -50,6 +52,7 @@
   border-top-left-radius: 5px;
   border-right: 0px;
 }
+
 
 .customCheckBoxWrapper:last-of-type .customCheckBox {
   border-bottom-right-radius: 5px;
@@ -79,11 +82,19 @@
 .customCheckBoxWrapper .customCheckBox:hover .inner {
   transform: translateY(-2px);
 }
-
+.testClass{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
 .save-button-container {
   display: flex;
   justify-content: center;
-  margin-top: 20px;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+  width: 100%;
+  
 }
 
 .save-button {
@@ -94,6 +105,8 @@
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  width: 30%;
+
 }
 
 .save-button:hover {
