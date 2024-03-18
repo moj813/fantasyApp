@@ -1,5 +1,5 @@
 import React from 'react';
-import './Contests.css;'
+import './Contest.css';
 
 const Contest = ({ id, name, entryFee, prizePool }) => (
   <div className="contest">
