@@ -31,7 +31,7 @@ const LiveScore = () => {
             
             {data.map((item, index) => (
             <div className="live-score-container_32">
-              <NavLink to="/user/livescore/22DIT032" onClick={updateScore}>
+              <NavLink to={`/user/${tournamentID}/match/${item._id}`} onClick={updateScore}>
                 <span>{item.teamAName}</span> <span>vs</span>{" "}
                 <span>{item.teamBName}</span>
                 <h2>Batting Team name</h2>

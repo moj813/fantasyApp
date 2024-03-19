@@ -1,0 +1,144 @@
+.outer-box {
+    width: 80%;
+    margin: 0 auto;
+    border: 2px solid #ccc;
+    padding: 20px;
+    overflow-x: auto;
+  }
+  
+  .inside-box {
+    border: 2px solid #ccc;
+    padding: 20px;
+  }
+  
+  .card-row {
+    display: flex; /* Use flexbox */
+  }
+  
+  .card {
+    border: 1px solid #ccc;
+    padding: 20px; /* Increase padding for more height */
+    margin-right: 20px; /* Adjust margin as needed */
+    width: 150px; /* Set width */
+    height: 150px; /* Set height */
+    display: flex; /* Use flexbox */
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    transition: margin 0.3s ease; /* Smooth transition for margin */
+  }
+  
+  .card:hover {
+    margin-right: 30px; /* Add space to the right of the hovered card */
+  }
+  
+  .card:last-child {
+    margin-right: 0; /* Remove margin from the last card */
+  }
+  
+  p {
+    margin-top: 15px;
+    margin-bottom: 15px; /* Add margin between paragraphs */
+  }
+  
+
+  .custom-button {
+    background-color: #007bff; /* Blue */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 20px;
+    margin-left: 45%;
+  }
+  
+  .custom-button:hover {
+    background-color: #0056b3; /* Darker blue */
+  }
+  
+  .custom-button:active {
+    background-color: #004185; /* Slightly darker blue */
+  }
+  
+
+  .outer-box {
+    width: 80%;
+    margin: 0 auto;
+    border: 2px solid #706ac5; /* Yellow */
+    padding: 20px;
+    background-color: #f8f9fa; /* Light gray */
+  }
+  
+  .inside-box {
+    border: 2px solid #706ac5; /* Yellow */
+    padding: 20px;
+    background-color: #ffffff; /* White */
+  }
+  
+  .card-row {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .card {
+    border: 1px solid #706ac5; /* Yellow */
+    padding: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    width: 150px;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: margin 0.3s ease;
+    background-color: #f8f9fa; /* Light gray */
+  }
+  
+  .card:hover {
+    margin-right: 30px;
+  }
+  
+  .card:last-child {
+    margin-right: 0;
+  }
+  
+  p {
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+  
+  .toss {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: black;
+  }
+  
+  .custom-button {
+    background-color: #007bff; /* Blue */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 20px;
+    margin-left: 45%;
+  }
+  
+  .custom-button:hover {
+    background-color: #0056b3; /* Darker blue */
+  }
+  
+  .custom-button:active {
+    background-color: #004185; /* Slightly darker blue */
+  }
+
+ 

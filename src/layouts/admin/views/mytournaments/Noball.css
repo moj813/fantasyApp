@@ -1,0 +1,33 @@
+.outer-box_18 {
+  border: 2px solid #000;
+  padding: 20px;
+  width: 300px;
+  margin: 0 auto;
+}
+
+.done {
+  display: block;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  margin-left: 180px;
+}
+
+.done:hover {
+  background-color: #0056b3;
+}
+
+.cbox
+{
+    margin: 0%;
+    width: auto;
+}
+
+.label
+{
+    display: inline;
+    margin-left: 5px;
+}

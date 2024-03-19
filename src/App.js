@@ -37,6 +37,19 @@ import Edit from "./layouts/admin/views/mytournaments/Edit";
 import Teamb from "./layouts/admin/views/mytournaments/Teamb";
 
 
+import Startbutton from "./layouts/admin/views/mytournaments/Startbutton";
+import Toss from "./layouts/admin/views/mytournaments/Toss";
+import Choosing from "./layouts/admin/views/mytournaments/Choosing";
+import Selectbat from "./layouts/admin/views/mytournaments/Selectbat";
+import Selectbowl from "./layouts/admin/views/mytournaments/Selectbowl";
+import Score from "./layouts/admin/views/mytournaments/Score";
+import Noball from "./layouts/admin/views/mytournaments/Noball";
+import Out from "./layouts/admin/views/mytournaments/Out";
+import Caught from "./layouts/admin/views/mytournaments/Caught";
+import Selectbatsman from "./layouts/admin/views/mytournaments/Selectbatsman";
+import Strike from "./layouts/admin/views/mytournaments/Strike";
+
+
 function App() {
 
   const { user } = useSelector((state) => state.profile)
@@ -87,6 +100,19 @@ function App() {
                                   <Route path="/admin/mytournaments/Edit" element={<Edit />}/>
                                   <Route path="/admin/mytournaments/Teamb" element={<Teamb />} />
                                   <Route path="/admin/:tournamentID/team/:teamID/player" element={<TeamPlayers />}/>
+
+                                  <Route path="/admin/mytournaments/Startbutton" element={<Startbutton />}/>
+                                  <Route path="/admin/mytournaments/Toss" element={<Toss />}/>
+                                  <Route path="/admin/mytournaments/Choosing" element={<Choosing />}/>
+                                  <Route path="/admin/mytournaments/Selectbat" element={<Selectbat />}/>
+                                  <Route path="/admin/mytournaments/Selectbowl" element={<Selectbowl />}/>
+                                  <Route path="/admin/mytournaments/Score" element={<Score />}/>
+                                  <Route path="/admin/mytournaments/Noball" element={<Noball />}/>
+                                  <Route path="/admin/mytournaments/Out" element={<Out />}/>
+                                  <Route path="/admin/mytournaments/Caught" element={<Caught />}/>
+                                  <Route path="/admin/mytournaments/Selectbatsman" element={<Selectbatsman />}/>
+                                  <Route path="/admin/mytournaments/Strike" element={<Strike />}/>
+
                                   <Route path="/admin*" element={<>404 Page Not Found</>} />
                                 </Route>
                             )
@@ -97,11 +123,9 @@ function App() {
       { user?.role === "user" && (
                                       <Route path='/user' element={<User />}>
                                           <Route path="/user/default" element={<>This is User Default</>} />
-                                          <Route path="/user/livescore" element={<LiveScore />} />
-                                          <Route path="/user/livescore/:id" element={<TeamScore />} /> {/* Use element prop instead of component */}
                                           <Route path="/user/tournaments" element={<ListTournament />} />
-                                          <Route path="/user/:tournamentID/matche/:matchID" element={<LiveScore />} />
                                           <Route path={`/user/tournament/:tournamentID/match`} element={<LiveScore/>} />
+                                          <Route path="/user/:tournamentID/match/:matchID" element={<TeamScore />} />
                                           <Route path="/user/*" element={<>404 Page Not Found</>} />
                                      </Route>
                                   )

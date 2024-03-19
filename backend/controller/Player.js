@@ -103,6 +103,8 @@ const findTotalPLayer = async (req,res)=>{
              return res.json({
                 success:true,
                 msg:"Players Found",
+                teamA:matchDetails.teamAName,
+                teamB:matchDetails.teamBName,
                 teamAplayers,
                 teamBplayers
             })

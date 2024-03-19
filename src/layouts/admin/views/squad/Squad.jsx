@@ -8,7 +8,7 @@ import FormHelperText from '@mui/material/FormHelperText';
 import Checkbox from '@mui/material/Checkbox';
 import { toast } from 'react-toastify';
 
-const Squad = ({ teamA, teamB ,selectedPlayersTeamA,selectedPlayersTeamB,setSelectedPlayersTeamA,setSelectedPlayersTeamB }) => {
+const Squad = ({ teamName,teamA, teamB ,selectedPlayersTeamA,selectedPlayersTeamB,setSelectedPlayersTeamA,setSelectedPlayersTeamB }) => {
   // const [selectedPlayersTeamA, setSelectedPlayersTeamA] = useState([]);
   // const [selectedPlayersTeamB, setSelectedPlayersTeamB] = useState([]);
 
@@ -51,10 +51,11 @@ const Squad = ({ teamA, teamB ,selectedPlayersTeamA,selectedPlayersTeamB,setSele
   return (
     <div className="squad-container">
       <div className="team-section">
-        <h2>Team 1</h2>
+        <h2>{teamName[0]}</h2>
         <div className="players-list">
           {teamA.map(player => (
             <FormControlLabel
+            className='formEntry'
               key={player._id}
               control={
                 <Checkbox
@@ -68,10 +69,11 @@ const Squad = ({ teamA, teamB ,selectedPlayersTeamA,selectedPlayersTeamB,setSele
         </div>
       </div>
       <div className="team-section">
-        <h2>Team 2</h2>
+        <h2>{teamName[1]}</h2>
         <div className="players-list">
           {teamB.map(player => (
             <FormControlLabel
+            className='formEntry'
               key={player._id}
               control={
                 <Checkbox

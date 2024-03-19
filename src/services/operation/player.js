@@ -59,7 +59,7 @@ export async function findPlayer(setLoading,setPlayers,teamID){
 
 
 
-export async function findAllPLayerOfMatch(setLoading,setTeamA,setTeamB,matchID){
+export async function findAllPLayerOfMatch(setLoading,setTeamName,setTeamA,setTeamB,matchID){
   try{
     setLoading(true);
     const response = await apiConnector(
@@ -73,8 +73,10 @@ export async function findAllPLayerOfMatch(setLoading,setTeamA,setTeamB,matchID)
    }
 
    if(response.data.success){
+    console.log(response.data)
     setTeamA(response.data.teamAplayers);
     setTeamB(response.data.teamBplayers);
+    setTeamName([response.data.teamA , response.data.teamB])
    }
     setLoading(false);
   }catch(error){
