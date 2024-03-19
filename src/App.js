@@ -127,7 +127,7 @@ function App() {
                                           <Route path={`/user/tournament/:tournamentID/match`} element={<LiveScore/>} />
                                           <Route path="/user/:tournamentID/match/:matchID" element={<TeamScore />} />
                                           <Route path="/user/*" element={<>404 Page Not Found</>} />
-                                     </Route>
+                                      </Route>
                                   )
       }
 
