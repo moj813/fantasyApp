@@ -7,7 +7,7 @@
     margin-top: 20px;
   }
   
-  .contest {
+  .contest { 
     border: 1px solid #ccc;
     border-radius: 5px;
     padding: 10px;
@@ -17,7 +17,7 @@
   .contest h3 {
     margin-top: 0;
   }
-  
+
   .contest p {
     margin: 5px 0;
   }
