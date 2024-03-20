@@ -9,7 +9,7 @@ function Sidebar({toggleHandler}) {
     { icon: 'home-outline', text: 'Home' },
     { icon: 'cube-outline', text: 'Live Score', path:'/user/livescore' },
     { icon: 'search-outline', text: 'Search' },
-    { icon: 'bookmark-outline', text: 'Bookmarks' },
+    { icon: 'Tournaments-outline', text: 'Tournaments', path:'/user/tournaments' },
     { icon: 'cog-outline', text: 'Settings' },
     {icon: 'cog-outline', text: 'My Contest', path:'/user/mycontest'}
   ];
