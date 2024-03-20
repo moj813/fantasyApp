@@ -1,16 +1,23 @@
 // TeamForm.js
 
 import React, { useState } from 'react';
+import { useParams } from 'react-router-dom';
 import './Addteam.css';
-import { NavLink } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { addTeam } from '../../../../services/operation/tournament';
 
 const Addteam = ({ onAddTeam }) => {
+
+  const navigate = useNavigate();
+  const {tournamentID} = useParams();
+
+
   const [formData, setFormData] = useState({
-    name: '',
-    city: '',
+    teamName: '',
+    cityName: '',
   });
 
-  const { name, city } = formData;
+  const { teamName, cityName } = formData;
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -18,8 +25,9 @@ const Addteam = ({ onAddTeam }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onAddTeam(formData);
+    addTeam(teamName,cityName,tournamentID);
     setFormData({ name: '', city: '' });
+    navigate(`/admin/${tournamentID}/teams`);
   };
 
   return (
@@ -29,11 +37,12 @@ const Addteam = ({ onAddTeam }) => {
         <input
           type="text"
           id="name"
-          name="name"
-          value={name}
+          name="teamName"
+          value={teamName}
           onChange={handleChange}
           className="form-control"
           placeholder="Enter team name"
+          required
         />
       </div>
       <div className="form-group">
@@ -41,18 +50,16 @@ const Addteam = ({ onAddTeam }) => {
         <input
           type="text"
           id="city"
-          name="city"
-          value={city}
+          name="cityName"
+          value={cityName}
           onChange={handleChange}
           className="form-control"
           placeholder="Enter city"
+          required
         />
       </div>
       <button type="submit" className="btn btn-primary">
-        <NavLink to="/admin/mytournamnets/teams">
         Add Team
-        </NavLink>
-        
       </button>
     </form>
   );

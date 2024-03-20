@@ -1,56 +1,68 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Playingsquad.css";
-import { NavLink } from 'react-router-dom';
+import { NavLink, useParams, useNavigate } from "react-router-dom";
+import { findAllPLayerOfMatch } from "../../../../services/operation/player";
+import Squad from "../squad/Squad";
+import { addPlaying11 } from "../../../../services/operation/tournament";
 
 const PlayingSquad = () => {
-  const [squad, setSquad] = useState([]);
-  const [playerName, setPlayerName] = useState("");
+  const { matchID } = useParams();
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState();
+  const [teamA, setTeamA] = useState([]);
+  const [teamB, setTeamB] = useState([]);
+  const [teamName, setTeamName] = useState(["TeamA", "TeamB"]);
+  const [selectedPlayersTeamA, setSelectedPlayersTeamA] = useState([]);
+  const [selectedPlayersTeamB, setSelectedPlayersTeamB] = useState([]);
 
-  const addPlayer = () => {
-    setSquad([...squad, playerName]);
-    setPlayerName("");
+  const submitHandler = () => {
+    console.log("Team A", selectedPlayersTeamA);
+    console.log("Team B", selectedPlayersTeamB);
+    addPlaying11(matchID, selectedPlayersTeamA, selectedPlayersTeamB, navigate);
   };
 
-  const searchPlayers = () => {
-    // Add your search logic here
-  };
+  useEffect(() => {
+    findAllPLayerOfMatch(setLoading, setTeamName, setTeamA, setTeamB, matchID);
+  }, [matchID]);
+
+  // Check if both teams have at least 11 players selected
+  const isNextDisabled =
+    selectedPlayersTeamA.length < 2 || selectedPlayersTeamB.length < 2;
 
   return (
     <div className="playing-squad">
-      <h1>Playing Squad: Team A</h1>
-      <ul className="player-list">
-        {squad.map((player, index) => (
-          <li key={index}>{player}</li>
-        ))}
-      </ul>
-      <div className="input-button-container">
-        <input
-          type="text"
-          value={playerName}
-          onChange={(e) => setPlayerName(e.target.value)}
-          placeholder="Add player"
-        />
-        <button onClick={addPlayer} className="add-button">
-          Add
-        </button>
-        <button onClick={searchPlayers} className="search-button">
-          Search
-        </button>
-      </div>
-      <div className="scrollbar">
-        <ul className="player-list">
-          {squad.map((player, index) => (
-            <li key={index}>{player}</li>
-          ))}
-        </ul>
-      </div>  
-      <div className="Bottom_18">
-        <span><button className="cancel_18 ">Cancel</button></span>
+      {loading ? (
+        <>Loading</>
+      ) : (
+        <>
+          <h1>Set Playing 11</h1>
 
-        <NavLink to="/admin/mytournaments/Teamb">
-        <span><button className="Team_18">Team B</button></span>
-        </NavLink>
-      </div>
+          <Squad
+            teamName={teamName}
+            teamA={teamA}
+            teamB={teamB}
+            selectedPlayersTeamA={selectedPlayersTeamA}
+            selectedPlayersTeamB={selectedPlayersTeamB}
+            setSelectedPlayersTeamA={setSelectedPlayersTeamA}
+            setSelectedPlayersTeamB={setSelectedPlayersTeamB}
+          />
+
+          <div className="Bottom_18">
+            <span>
+              <button className="cancel_18">Cancel</button>
+            </span>
+            <span>
+              <button
+                className="Team_18"
+                onClick={submitHandler}
+                disabled={isNextDisabled}
+              >
+                Next
+              </button>
+            </span>
+          </div>
+        </>
+      )}
     </div>
   );
 };

@@ -62,7 +62,7 @@ const getAllTournament = async (req, res) => {
       userId:0,
       teams:0,
       matches:0,
-      _id:0
+      _id:1
     });
     console.log(allTournament)
     return res.json({

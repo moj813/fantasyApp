@@ -8,10 +8,15 @@ function Sidebar({toggleHandler}) {
   const linkItems = [
     { icon: 'home-outline', text: 'Home' },
     { icon: 'cube-outline', text: 'Live Score', path:'/user/livescore' },
+<<<<<<< HEAD
     { icon: 'search-outline', text: 'Search' },
     { icon: 'Tournaments-outline', text: 'Tournaments', path:'/user/tournaments' },
     { icon: 'cog-outline', text: 'Settings' },
     {icon: 'cog-outline', text: 'My Contest', path:'/user/mycontest'}
+=======
+    {icon: 'cog-outline', text: 'My Contest', path:'/user/mycontest'},
+    {icon: 'cog-outline', text: 'Tournaments', path:'/user/tournaments'},
+>>>>>>> 8b8f74eda5ad9653f1731449ca41a792688055bd
   ];
   const handleLinkItemClick = (index) => {
     setSelectedIndex(index);

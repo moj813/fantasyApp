@@ -1,15 +1,23 @@
-import React, { useState } from 'react';
-import './Matchfrom.css'
-import { NavLink } from 'react-router-dom';
+import React, { useState } from "react";
+import "./Matchfrom.css";
+import { NavLink, useNavigate , useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import { registerMatch } from "../../../../services/operation/tournament";
 
 const Matchform = () => {
+
+  const navigate = useNavigate();
+  const {tournamentID} = useParams();
+  const{teamA , teamB} = useSelector((state)=>state.match);
+
   const [formData, setFormData] = useState({
-    noOfOvers: '',
-    oversPerBowler: '',
-    city: '',
-    ground: '',
-    date: '',
-    time: '',
+    noOfOvers: "",
+    oversPerBowler: "",
+    city: "",
+    ground: "",
+    date: "",
+    time: "",
   });
 
   const handleChange = (e) => {
@@ -18,61 +26,119 @@ const Matchform = () => {
   };
 
   const handleBackClick = () => {
-    // Handle back button click logic
-    console.log('Back button clicked');
+    navigate(-1);
   };
 
-  const handleScheduleMatchClick = () => {
-    // Handle Schedule Match button click logic
-    console.log('Schedule Match button clicked');
-    console.log('Form Data:', formData);
-    // You can send the form data to the server or perform any other necessary actions here
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    const currentTime = new Date();
+    const selectedDateTime = new Date(`${formData.date}T${formData.time}`);
+    const allowedTime = new Date(currentTime.getTime() + 30 * 60000); // 30 minutes in milliseconds
+
+    if (selectedDateTime < allowedTime) {
+      toast.error("Select Time After 30 Minutes");
+    } else {
+      const { noOfOvers, oversPerBowler, city, ground,date,time  } = formData;
+      const serializedDateTime = selectedDateTime.toISOString();
+      console.log(teamA._id,teamB._id,teamA.teamName,teamB.teamName,noOfOvers, oversPerBowler, city, ground,serializedDateTime,tournamentID)
+      registerMatch(teamA._id,teamB._id,teamA.teamName,teamB.teamName,noOfOvers, oversPerBowler, city, ground,date,time,tournamentID);
+    }
   };
+
 
   return (
     <div className="match-schedule-form">
       <h2>Schedule Match</h2>
-      <form>
-        <label>
-          No of Overs:
-          <input type="text" name="noOfOvers" value={formData.noOfOvers} onChange={handleChange} />
-        </label>
+      <form onSubmit={(e)=>onSubmit(e)} className="formContainerAtAddTournament_22">
+        <div>
+          <div className="inputFieldAtSignup_22">
+            <p>No of Overs : *</p>
+            <input
+              type="number"
+              required
+              name="noOfOvers"
+              id="name"
+              placeholder="Number Of overs"
+              value={formData.noOfOvers}
+              onChange={handleChange}
+            />
+          </div>
 
-        <label>
-          Overs per Bowler:
-          <input type="text" name="oversPerBowler" value={formData.oversPerBowler} onChange={handleChange} />
-        </label>
+          <div className="inputFieldAtSignup_22">
+            <p>Overs per Bowler : *</p>
+            <input
+              type="number"
+              required
+              name="oversPerBowler"
+              id="name"
+              placeholder="Overs per Bowler"
+              value={formData.oversPerBowler}
+              onChange={handleChange}
+            />
+          </div>
 
-        <label>
-          City:
-          <input type="text" name="city" value={formData.city} onChange={handleChange} />
-        </label>
+          <div className="inputFieldAtSignup_22">
+            <p>City : *</p>
+            <input
+              type="text"
+              required
+              name="city"
+              id="city"
+              placeholder="Overs per Bowler"
+              value={formData.city}
+              onChange={handleChange}
+            />
+          </div>
+        </div>
 
-        <label>
-          Ground:
-          <input type="text" name="ground" value={formData.ground} onChange={handleChange} />
-        </label>
-        
-        <label>
-          Date:
-          <input type="date" name="date" value={formData.date} onChange={handleChange} />
-        </label>
-        
-        <label>
-          Time:
-          <input type="time" name="time" value={formData.time} onChange={handleChange} />
-        </label>
-        
+        <div>
+          <div className="inputFieldAtSignup_22">
+            <p>Ground : *</p>
+            <input
+              type="text"
+              required
+              name="ground"
+              placeholder="Ground"
+              value={formData.ground}
+              onChange={handleChange}
+            />
+          </div>
+
+          <div className="inputFieldAtSignup_22">
+            <p>Date : *</p>
+            <input
+              type="date"
+              required
+              name="date"
+              value={formData.date}
+              onChange={handleChange}
+            />
+          </div>
+
+          <div className="inputFieldAtSignup_22">
+            <p>Date : *</p>
+            <input
+              type="time"
+              required
+              name="time"
+              value={formData.time}
+              onChange={handleChange}
+            />
+          </div>
+        </div>
 
         <div className="button-container">
-            <NavLink to={"/admin/mytournaments/Choose"}>
-            <button className="back" type="button" onClick={handleBackClick}>Back</button>
-            </NavLink>
-          
-          <NavLink to={"/admin/mytournaments/Schedulematch"}>
-          <button className="schedule" type="button" onClick={handleScheduleMatchClick}>Schedule Match</button>
+          <NavLink to={"/admin/mytournaments/Choose"}>
+            <button className="back" type="button" onClick={handleBackClick}>
+              Back
+            </button>
           </NavLink>
-          
+
+          <button className="schedule" type="submit">
+            Schedule Match
+          </button>
         </div>
       </form>
     </div>

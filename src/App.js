@@ -25,6 +25,7 @@ import HomeLayout from './layouts/auth/index';
 import Mytournaments from "./layouts/admin/views/mytournaments/Mytournaments";
 import Addtournaments from "./layouts/admin/views/mytournaments/Addtournaments";
 import Teams from "./layouts/admin/views/mytournaments/Teams"
+import TeamPlayers from "./layouts/admin/views/mytournaments/TeamPlayers";
 import Addteam from "./layouts/admin/views/mytournaments/Addteam";
 import Addplayer from "./layouts/admin/views/mytournaments/Addplayer";
 import Matches from "./layouts/admin/views/mytournaments/Matches";
@@ -34,6 +35,19 @@ import Matchform from "./layouts/admin/views/mytournaments/Matchform";
 import Playingsquad from "./layouts/admin/views/mytournaments/Playingsquad";
 import Edit from "./layouts/admin/views/mytournaments/Edit";
 import Teamb from "./layouts/admin/views/mytournaments/Teamb";
+
+
+import Startbutton from "./layouts/admin/views/mytournaments/Startbutton";
+import Toss from "./layouts/admin/views/mytournaments/Toss";
+import Choosing from "./layouts/admin/views/mytournaments/Choosing";
+import Selectbat from "./layouts/admin/views/mytournaments/Selectbat";
+import Selectbowl from "./layouts/admin/views/mytournaments/Selectbowl";
+import Score from "./layouts/admin/views/mytournaments/Score";
+import Noball from "./layouts/admin/views/mytournaments/Noball";
+import Out from "./layouts/admin/views/mytournaments/Out";
+import Caught from "./layouts/admin/views/mytournaments/Caught";
+import Selectbatsman from "./layouts/admin/views/mytournaments/Selectbatsman";
+import Strike from "./layouts/admin/views/mytournaments/Strike";
 
 
 function App() {
@@ -75,16 +89,30 @@ function App() {
                                   <Route path="/admin/mytournaments" element={<Mytournaments />} />
                                   <Route path="/admin/livescore" element={<LiveScore />} />
                                   <Route path="/admin/mytournamnets/addtournaments" element={<Addtournaments />} />
-                                  <Route path="/admin/mytournamnets/teams" element={<Teams />}/>
-                                  <Route path="/admin/mytournamnets/Addteam" element={<Addteam />}/>
-                                  <Route path="/admin/mytournamnets/Addplayer" element={<Addplayer />}/>
+                                  <Route path="/admin/:tournamentID/teams" element={<Teams />}/>
+                                  <Route path="/admin/:tournamentID/addteam" element={<Addteam />}/>
+                                  <Route path="/admin/:tournamentID/team/:teamID/addplayer" element={<Addplayer />}/>
                                   <Route path="/admin/mytournaments/Matches" element={<Matches />}/>
-                                  <Route path="/admin/mytournaments/Schedulematch" element={<Schedulematch />} />
-                                  <Route path="/admin/mytournaments/Choose" element={<Choose />}/>
-                                  <Route path="/admin/mytournaments/Matchform" element={<Matchform />}/>
-                                  <Route path="/admin/mytournaments/Playingsquad" element={<Playingsquad />}/>
+                                  <Route path="/admin/:tournamentID/Schedulematch" element={<Schedulematch />} />
+                                  <Route path="/admin/:tournamentID/choose" element={<Choose />}/>
+                                  <Route path="/admin/:tournamentID/matchform" element={<Matchform />}/>
+                                  <Route path="/admin/:tournamentID/match/:matchID" element={<Playingsquad />}/>
                                   <Route path="/admin/mytournaments/Edit" element={<Edit />}/>
-                                  <Route path="/admin/mytournaments/Teamb" element={<Teamb />}/>
+                                  <Route path="/admin/mytournaments/Teamb" element={<Teamb />} />
+                                  <Route path="/admin/:tournamentID/team/:teamID/player" element={<TeamPlayers />}/>
+
+                                  <Route path="/admin/mytournaments/Startbutton" element={<Startbutton />}/>
+                                  <Route path="/admin/mytournaments/Toss" element={<Toss />}/>
+                                  <Route path="/admin/mytournaments/Choosing" element={<Choosing />}/>
+                                  <Route path="/admin/mytournaments/Selectbat" element={<Selectbat />}/>
+                                  <Route path="/admin/mytournaments/Selectbowl" element={<Selectbowl />}/>
+                                  <Route path="/admin/mytournaments/Score" element={<Score />}/>
+                                  <Route path="/admin/mytournaments/Noball" element={<Noball />}/>
+                                  <Route path="/admin/mytournaments/Out" element={<Out />}/>
+                                  <Route path="/admin/mytournaments/Caught" element={<Caught />}/>
+                                  <Route path="/admin/mytournaments/Selectbatsman" element={<Selectbatsman />}/>
+                                  <Route path="/admin/mytournaments/Strike" element={<Strike />}/>
+
                                   <Route path="/admin*" element={<>404 Page Not Found</>} />
                                 </Route>
                             )
@@ -95,13 +123,11 @@ function App() {
       { user?.role === "user" && (
                                       <Route path='/user' element={<User />}>
                                           <Route path="/user/default" element={<>This is User Default</>} />
-                                          <Route path="/user/livescore" element={<LiveScore />} />
-                                          <Route path="/user/livescore/:id" element={<TeamScore />} /> {/* Use element prop instead of component */}
                                           <Route path="/user/tournaments" element={<ListTournament />} />
-                                          <Route path="/user/tournaments/matches" element={<LiveScore />} />
-                                          <Route path={`/user/tournament/:tournmentID/match`} element={<LiveScore/>} />
+                                          <Route path={`/user/tournament/:tournamentID/match`} element={<LiveScore/>} />
+                                          <Route path="/user/:tournamentID/match/:matchID" element={<TeamScore />} />
                                           <Route path="/user/*" element={<>404 Page Not Found</>} />
-                                     </Route>
+                                      </Route>
                                   )
       }
 

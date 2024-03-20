@@ -1,8 +1,19 @@
 .scorecard_32 {
+<<<<<<< HEAD
   height: 100%;
   width: 95%;
   margin-right: 10%;
 }
+=======
+    height: 60%;
+    width: 95%;
+    margin-right: 10%;
+  }
+  
+  h3 {
+    font-weight: 300;
+  }
+>>>>>>> 8b8f74eda5ad9653f1731449ca41a792688055bd
 
 h3 {
   font-weight: 300;

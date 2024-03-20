@@ -1,0 +1,66 @@
+
+.squad-container {
+    display: flex;
+    max-height:  60vh;
+  }
+  .formEntry{
+    width: 95%;
+    margin: 10px;
+    border-bottom: 1px solid #ccc;
+    background-color: #f9f9f9;
+  }
+  
+  .team-section {
+    width: 50%;
+    border-right: 1px solid #ccc;
+    padding: 0 20px;
+    overflow-y: auto;
+    scrollbar-width: none;
+    max-height: 400px;
+  }
+  
+  .team-section:last-child {
+    border-right: none;
+  }
+  
+  .team-section h2 {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+  .players-list {
+     /* Remove flex-wrap property to display players vertically */
+  }
+  
+  .player {
+    display: flex;
+    align-items: center;
+    width: 100%; /* Each player takes up 100% of the width */
+    padding: 5px;
+    border-radius: 5px;
+  }
+  
+  .small-div {
+    width: 40px;
+    height: 40px;
+    background-color: #ccc;
+    margin-right: 10px; /* Adjust margin as needed */
+    border-radius: 50%;
+  }
+  
+  .player img {
+    width: 40px; /* Set the image width */
+    height: 40px; /* Set the image height */
+    border-radius: 50%; /* Make the image round */
+    margin-right: 10px; /* Add some space between the image and the player name */
+  }
+  
+  .player:nth-child(odd) {
+    background-color: #f9f9f9; /* Alternate background color for odd players */
+  }
+  
+  .player:nth-child(even) {
+    background-color: #ffffff; /* Alternate background color for even players */
+  }
+
+  

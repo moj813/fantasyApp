@@ -3,8 +3,12 @@ import './TeamScore.css';
 import Commentry from './Commentry/Commentry';
 import Scorecard from './Scorecard/Scorecard';
 import Squad from './Squad/Squad';
+<<<<<<< HEAD
 import TeamPlayers from '../Tournaments/TeamPlayers/TeamPlayers';
 import Contests from '../Tournaments/TeamPlayers/Contests/Contests';
+=======
+// import TeamPlayers from './TeamPlayers/TeamPlyers';
+>>>>>>> 8b8f74eda5ad9653f1731449ca41a792688055bd
 
 
 const TeamScore = () => {
@@ -38,6 +42,7 @@ const TeamScore = () => {
         >
           Squad
         </button>
+<<<<<<< HEAD
         <button
           className={selectedButton === 'TeamPlayers' ? 'selected' : ''}
           onClick={() => handleButtonClick('TeamPlayers')}
@@ -50,6 +55,8 @@ const TeamScore = () => {
         >
           Contests
         </button>
+=======
+>>>>>>> 8b8f74eda5ad9653f1731449ca41a792688055bd
 
       </nav>
       <br />
@@ -62,12 +69,15 @@ const TeamScore = () => {
       <div className={selectedButton === 'squad' ? 'visible' : 'hidden'}>
         <h1><Squad/></h1>
       </div>
+<<<<<<< HEAD
       <div className={selectedButton === 'TeamPlayers' ? 'visible' : 'hidden'}>
         <h1><TeamPlayers/></h1>
       </div>
       <div className={selectedButton === 'Contests' ? 'visible' : 'hidden'}>
         <h1><Contests/></h1>
       </div>
+=======
+>>>>>>> 8b8f74eda5ad9653f1731449ca41a792688055bd
 
     </div>
   );

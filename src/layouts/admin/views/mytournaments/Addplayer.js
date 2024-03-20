@@ -2,9 +2,13 @@
 
 import React, { useState } from 'react';
 import './Addpalyer.css';
-import { NavLink } from 'react-router-dom';
+import {  useNavigate , useParams} from 'react-router-dom';
+import { addPlayer } from '../../../../services/operation/player';
 
 const Addplayer = ({ onAddTeam }) => {
+
+  const navigate = useNavigate();
+  const {tournamentID , teamID} = useParams();
   const [formData, setFormData] = useState({
     name: '',
     number: '',
@@ -13,20 +17,15 @@ const Addplayer = ({ onAddTeam }) => {
   const { name, number } = formData;
 
   const handleChange = (e) => {
-    // Check if the input is the phone number and if its length is greater than 10
-    if (e.target.name === 'number' && e.target.value.length > 10) {
-      // You can choose to display an error message or take appropriate action
-      console.log('Phone number cannot be greater than 10 digits');
-      return;
-    }
-
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onAddTeam(formData);
+    console.log(name,number);
+    addPlayer(name, number,tournamentID , teamID);
     setFormData({ name: '', number: '' });
+    navigate(-1);
   };
 
   return (
@@ -41,6 +40,7 @@ const Addplayer = ({ onAddTeam }) => {
           onChange={handleChange}
           className="form-control"
           placeholder="Enter name"
+          required
         />
       </div>
       <div className="form-group">
@@ -53,10 +53,12 @@ const Addplayer = ({ onAddTeam }) => {
           onChange={handleChange}
           className="form-control"
           placeholder="Enter valid phone number"
+          required
+          maxLength={10}
         />
       </div>
       <button type="submit" className="btn btn-primary">
-        <NavLink to="/admin/mytournamnets/teams">Add Player</NavLink>
+        Add Player
       </button>
     </form>
   );

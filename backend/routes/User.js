@@ -6,8 +6,7 @@ const router = express.Router()
 
 // Import the required controllers and middleware functions
 const { login, signUp, sendOTP, changePassword,} = require("../controller/Auth");
-const { isLoggedin , isUser , isAdmin } = require('../middleware/AuthMiddleware');
-const {addTournament , getAllTournament , getTournamentForUser} = require('../controller/Tournament');
+// const { isLoggedin , isUser , isAdmin } = require('../middleware/AuthMiddleware');
 // const { resetPasswordToken,  resetPassword,} = require("../controllers/ResetPassword")
 // const { auth } = require("../middlewares/auth")
 
@@ -17,10 +16,7 @@ const {addTournament , getAllTournament , getTournamentForUser} = require('../co
 // ********************************************************************************************************
 router.post("/login", login)                      // Route for user login
 router.post("/signup", signUp)                    // Route for user signup
-router.post("/sendotp", sendOTP)                  // Route for sending OTP to the user's email
-router.post("/addtournament",isLoggedin , isAdmin , addTournament); 
-router.get("/getAllTournament",getAllTournament) 
-router.get("/gettournamentforuser",isLoggedin,isAdmin,getTournamentForUser)              
+router.post("/sendotp", sendOTP)                  // Route for sending OTP to the user's email             
 // router.post("/changepassword", auth, changePassword)     // Route for Changing the password
 
 
