@@ -113,4 +113,22 @@
   background-color: #0056b3; /* Change the hover background color as needed */
 }
 
+.squad-container {
+  height: 100%; /* Adjusted to 100% of the parent container's height */
+}
+
+.team-section {
+  height: 50%; /* Adjusted to 50% of the squad-container's height */
+  border-right: 1px solid #ccc;
+  padding: 0 20px;
+  overflow-y: auto; /* Enable vertical scrolling if needed */
+  scrollbar-width: none; /* Hide the scrollbar */
+}
+
+.players-list {
+  /* Remove flex-wrap property to display players vertically */
+  max-height: 90%; /* Adjusted to 90% of the parent container's height */
+}
+
+
 

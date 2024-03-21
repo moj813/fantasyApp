@@ -3,7 +3,8 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './TeamPlayers.css';
 
-const TeamPlayers = () => {
+
+const TeamPlayer = () => {
   const [selectedPlayers, setSelectedPlayers] = useState([]);
 
   // Sample player data
@@ -13,10 +14,10 @@ const TeamPlayers = () => {
   const handlePlayerSelect = (player) => {
     const index = selectedPlayers.findIndex(selectedPlayer => selectedPlayer.id === player.id);
     if (index === -1) {
-      if (selectedPlayers.length < 12) {
+      if (selectedPlayers.length < 11) {
         setSelectedPlayers([...selectedPlayers, { ...player }]);
       } else {
-        toast.warning("You can only select up to 12 players");
+        toast.warning("You can only select up to 11 players");
       }
     } else {
       const updatedPlayers = selectedPlayers.filter(selectedPlayer => selectedPlayer.id !== player.id);
@@ -25,8 +26,8 @@ const TeamPlayers = () => {
   };
 
   const handleSave = () => {
-    if(selectedPlayers.length < 12){
-      toast.warning("Please select at least 12 players");
+    if(selectedPlayers.length < 11){
+      toast.warning("Please select at least 11 players");
     } else {
       // Create an array to store selected players
       const selectedPlayersArray = [];
@@ -108,4 +109,4 @@ const TeamPlayers = () => {
   );
 }
 
-export default TeamPlayers;
+export default TeamPlayer;

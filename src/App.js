@@ -35,6 +35,7 @@ import Matchform from "./layouts/admin/views/mytournaments/Matchform";
 import Playingsquad from "./layouts/admin/views/mytournaments/Playingsquad";
 import Edit from "./layouts/admin/views/mytournaments/Edit";
 import Teamb from "./layouts/admin/views/mytournaments/Teamb";
+import TeamPlayer from "./layouts/user/views/Tournaments/TeamPlayers/TeamPlayer";
 
 
 import Startbutton from "./layouts/admin/views/mytournaments/Startbutton";
@@ -127,6 +128,7 @@ function App() {
                                           <Route path={`/user/tournament/:tournamentID/match`} element={<LiveScore/>} />
                                           <Route path="/user/:tournamentID/match/:matchID" element={<TeamScore />} />
                                           <Route path="/user/*" element={<>404 Page Not Found</>} />
+                                          <Route path="/user/tournaments/match/teamplayer" element={<TeamPlayer />} />
                                       </Route>
                                   )
       }

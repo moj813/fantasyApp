@@ -1,7 +1,7 @@
 
 import './Squad.css';
 import React, { useEffect, useState } from "react";
-import { NavLink, useParams, useNavigate } from "react-router-dom";
+import {  useParams } from "react-router-dom";
 import { findAllPLayerOfMatch } from '../../../../../services/operation/player';
 
 const Squad = () => {
