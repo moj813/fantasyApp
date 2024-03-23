@@ -7,7 +7,6 @@ import './TeamPlayers.css';
 const TeamPlayer = () => {
   const [selectedPlayers, setSelectedPlayers] = useState([]);
 
-  // Sample player data
   const playersTeam1 = Array.from({ length: 15 }, (_, index) => ({ name: `Player ${index + 1}`, id: `team1-${index}` }));
   const playersTeam2 = Array.from({ length: 15 }, (_, index) => ({ name: `Player A${index + 1}`, id: `team2-${index}` }));
 
@@ -29,10 +28,8 @@ const TeamPlayer = () => {
     if(selectedPlayers.length < 11){
       toast.warning("Please select at least 11 players");
     } else {
-      // Create an array to store selected players
       const selectedPlayersArray = [];
 
-      // Filter selected players from both teams and add them to the array
       playersTeam1.forEach(player => {
         if (selectedPlayers.find(selectedPlayer => selectedPlayer.id === player.id)) {
           selectedPlayersArray.push(player);
@@ -45,10 +42,8 @@ const TeamPlayer = () => {
         }
       });
 
-      // Do something with selectedPlayersArray, e.g., send it to the server
       console.log("Selected players:", selectedPlayersArray);
 
-      // Show success toast
       toast.success("Selected players saved successfully");
 
       // Reset selectedPlayers after saving if needed
