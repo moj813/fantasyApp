@@ -1,5 +1,5 @@
-const { responsiveFontSizes } = require("@mui/material");
 const matchModel = require("../model/match");
+const moment = require("moment-timezone");
 
 const addMatch = async (req, res) => {
   try {
@@ -34,8 +34,12 @@ const addMatch = async (req, res) => {
         msg: "All Field Required",
       });
     }
-
-    const newTime = new Date(date + "T" + time);
+  
+    // Combine date and time strings into a single datetime string
+    const dateTimeString = `${date}T${time}`;
+  
+    // Set the timezone to Indian Standard Time (IST)
+    const newTime = moment.tz(dateTimeString, "Asia/Kolkata");
 
     const response = await matchModel.create({
       teamAName: teamAName,
@@ -47,20 +51,19 @@ const addMatch = async (req, res) => {
       city: city,
       ground: ground,
       tournamentID: tournamentID,
-      matchTime: newTime,
+      matchTime: newTime.toDate(), // Convert moment object to JavaScript Date object
       createdByEmail: req.user.email,
       createdByID: req.user._id,
     });
-
+  
     return res.json({
       success: true,
-      msg: "Match Registred",
+      msg: "Match Registered",
     });
-    
   } catch (error) {
     return res.json({
       success: false,
-      msg: "Match Not Registred",
+      msg: "Match Not Registered",
     });
   }
 };
@@ -107,26 +110,31 @@ const getMyMatches = async (req, res) => {
 };
 
 const addPlaying = async (req,res)=>{
+  
   try{
     const {matchID,teamAPlaying, teamBPlaying} = req.body;
-
+    
     if(!matchID || teamAPlaying.length===0 || teamBPlaying===0){
       return res.json({
         success: false,
         msg: "Filed Missing",
       });
     }
-    const teamAPlayingIds = teamAPlaying.map(player => player.id);
-    const teamBPlayingIds = teamBPlaying.map(player => player.id);
 
-    const response = await matchModel.findByIdAndUpdate(matchID , { teamAplaying: teamAPlayingIds, teamBplaying: teamBPlayingIds });
-    console.log(response)
+    const teamAPlayingData = teamAPlaying.map(player => ({ id: player.id, playerName: player.name }));
+    const teamBPlayingData = teamBPlaying.map(player => ({ id: player.id, playerName: player.name }));
+
+
+
+    const response = await matchModel.findByIdAndUpdate(matchID , { teamAplaying: teamAPlayingData, teamBplaying: teamBPlayingData });
+
     return res.json({
       success: true,
       msg: "Working",
     });
+
   }catch(err){
-    console.log(err)
+
     return res.json({
       success: false,
       msg: "Can't Fetch the Data",
@@ -135,4 +143,33 @@ const addPlaying = async (req,res)=>{
 }
 
 
-module.exports = { addMatch, getAllMatches, getMyMatches , addPlaying };
+const findMyMatch = async (req,res)=>{
+  try{
+   
+    const { matchid } = req.query;
+   
+    if (!matchid) {
+      return res.send({
+        success: false,
+        msg: "TournamentID Missing",
+      });
+    }
+
+    const response = await matchModel.findOne({_id:matchid});
+    
+    return res.send({
+      success: true,
+      data: response,
+      msg: "Data Fetched",
+    });
+
+  }catch(error){
+
+    return res.json({
+      success: false,
+      msg: "Can't Fetch the Data",
+    });
+  }
+
+}
+module.exports = { addMatch, getAllMatches, getMyMatches , addPlaying  , findMyMatch};

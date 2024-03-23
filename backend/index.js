@@ -4,7 +4,8 @@ const app = express();
 
 const userRoutes = require("./routes/User");
 const tournamentRoutes = require("./routes/Tournament");
-const publicRoutes = require("./routes/Public")
+const publicRoutes = require("./routes/Public");
+const  scoreRoutes  = require("./routes/Score");
 // const profileRoutes = require("./routes/Profile");
 // const paymentRoutes = require("./routes/Payments");
 // const courseRoutes = require("./routes/Course");
@@ -40,6 +41,7 @@ app.use("/auth", userRoutes);
 
 app.use("/admin/tournament", tournamentRoutes);
 app.use("/public",publicRoutes);
+app.use("/admin/score",scoreRoutes);
 
 //def route
 app.get("/", (req, res) => {
