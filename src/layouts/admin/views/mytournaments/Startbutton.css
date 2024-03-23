@@ -28,3 +28,10 @@
     margin-right: 5px; /* Margin between icon and text */
   }
   
+
+  .disabledBtn{
+    cursor: not-allowed;
+    background-color: #eae6e6;
+    color: black;
+    border:1px solid #ccc;
+  }

@@ -83,8 +83,8 @@ const Dataview = ({ item }) => {
                   <p>Playing Squad</p>
                 </NavLink>
 
-                <NavLink to={"/admin/mytournaments/Schedulematch"}>
-                  <p>Match Officials</p>
+                <NavLink to={`/admin/mytournaments/${item._id}/score`}>
+                  <p>Update Score</p>
                 </NavLink>
               </div>
             )}

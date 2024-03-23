@@ -48,6 +48,7 @@ import Out from "./layouts/admin/views/mytournaments/Out";
 import Caught from "./layouts/admin/views/mytournaments/Caught";
 import Selectbatsman from "./layouts/admin/views/mytournaments/Selectbatsman";
 import Strike from "./layouts/admin/views/mytournaments/Strike";
+import NewScore from "./layouts/admin/views/score/NewScore";
 
 
 function App() {
@@ -112,6 +113,8 @@ function App() {
                                   <Route path="/admin/mytournaments/Caught" element={<Caught />}/>
                                   <Route path="/admin/mytournaments/Selectbatsman" element={<Selectbatsman />}/>
                                   <Route path="/admin/mytournaments/Strike" element={<Strike />}/>
+
+                                  <Route path="/admin/mytournaments/:matchID/score" element={<NewScore />} />
 
                                   <Route path="/admin*" element={<>404 Page Not Found</>} />
                                 </Route>

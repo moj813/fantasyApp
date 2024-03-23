@@ -3,6 +3,8 @@ import { toast } from "react-toastify";
 import { apiConnector } from "../connector";
 import { logout } from './authApi';
 import { setTeams , setLoading} from '../../slices/match';
+import {setStatus, setLoadingAtMatch ,setMatch } from "../../slices/matchScore";
+
 
 
 export function addtournament(data,navigate) {
@@ -259,3 +261,31 @@ export async function addPlaying11(matchID,teamAPlaying , teamBPlaying , navigat
   }
   toast.dismiss(toastId);
 }
+
+export  function findMyMatch(matchID ) {
+  return async (dispatch) => {
+    dispatch(setLoadingAtMatch(true))
+    const toastId = toast.loading("Loading");
+    try {
+      const response = await apiConnector(
+        "GET",
+        `http://localhost:4000/admin/tournament/findmatch?matchid=${matchID}`,
+        { matchID }
+      );
+      if (!response.data.success) {
+        throw new Error(response.data.msg);
+      }
+      if (response.data.success) {
+        console.log(response.data.data);
+        dispatch(setMatch(response.data.data))
+        dispatch(setStatus(response.data.data));
+        toast.success("Detail Found");
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("Couldn't Find MAtch");
+    }
+    toast.dismiss(toastId);
+    dispatch(setLoadingAtMatch(false))
+  };
+} 

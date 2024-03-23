@@ -25,13 +25,13 @@ const Squad = ({ teamName,teamA, teamB ,selectedPlayersTeamA,selectedPlayersTeam
       setSelectedPlayers = setSelectedPlayersTeamB;
       maxPlayers = 11;
     }
-
+  
     // Check if the maximum limit of players is reached for the team
     if (selectedPlayers.length === maxPlayers && !selectedPlayers.find(player => player.id === playerId)) {
       toast.error(`You can only select ${maxPlayers} players for ${teamId}.`);
       return;
     }
-
+  
     // Check if the player is already selected, and toggle its selection
     const playerIndex = selectedPlayers.findIndex(player => player.id === playerId);
     if (playerIndex !== -1) {
@@ -39,8 +39,10 @@ const Squad = ({ teamName,teamA, teamB ,selectedPlayersTeamA,selectedPlayersTeam
       updatedPlayers.splice(playerIndex, 1);
       setSelectedPlayers(updatedPlayers);
     } else {
-      setSelectedPlayers([...selectedPlayers, {id: playerId }]);
+      setSelectedPlayers([...selectedPlayers, { id: playerId, name: playerName }]);
     }
+    console.log(selectedPlayersTeamA);
+    console.log(selectedPlayersTeamB)
   };
 
   function submitHandler(){

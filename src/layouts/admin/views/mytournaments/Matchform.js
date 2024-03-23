@@ -32,18 +32,27 @@ const Matchform = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-
+  
     const currentTime = new Date();
     const selectedDateTime = new Date(`${formData.date}T${formData.time}`);
     const allowedTime = new Date(currentTime.getTime() + 30 * 60000); // 30 minutes in milliseconds
-
+  
     if (selectedDateTime < allowedTime) {
       toast.error("Select Time After 30 Minutes");
     } else {
-      const { noOfOvers, oversPerBowler, city, ground,date,time  } = formData;
-      const serializedDateTime = selectedDateTime.toISOString();
-      console.log(teamA._id,teamB._id,teamA.teamName,teamB.teamName,noOfOvers, oversPerBowler, city, ground,serializedDateTime,tournamentID)
-      registerMatch(teamA._id,teamB._id,teamA.teamName,teamB.teamName,noOfOvers, oversPerBowler, city, ground,date,time,tournamentID);
+      const { noOfOvers, oversPerBowler, city, ground, date, time } = formData;
+  
+      const selectedDateTimeUTC = new Date(`${date}T${time}Z`);
+  
+
+      const selectedDateTimeIST = new Date(selectedDateTimeUTC.getTime() + 5.5 * 60 * 60 * 1000);
+  
+
+      const serializedDate = selectedDateTimeIST.toISOString().split("T")[0];
+      const serializedTime = selectedDateTimeIST.toISOString().split("T")[1].split(".")[0];
+  
+      console.log(teamA._id, teamB._id, teamA.teamName, teamB.teamName, noOfOvers, oversPerBowler, city, ground, serializedDate, serializedTime, tournamentID);
+      registerMatch(teamA._id, teamB._id, teamA.teamName, teamB.teamName, noOfOvers, oversPerBowler, city, ground, serializedDate, serializedTime, tournamentID);
     }
   };
 
@@ -118,7 +127,7 @@ const Matchform = () => {
           </div>
 
           <div className="inputFieldAtSignup_22">
-            <p>Date : *</p>
+            <p>Time : *</p>
             <input
               type="time"
               required
