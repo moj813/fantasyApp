@@ -70,3 +70,7 @@
 .commentry-table tfoot td {
   border: none;
 }
+
+.runDisplayAtSCoreCard{
+  font-size: small;
+}

@@ -170,6 +170,7 @@ const findMyMatch = async (req,res)=>{
       msg: "Can't Fetch the Data",
     });
   }
-
 }
-module.exports = { addMatch, getAllMatches, getMyMatches , addPlaying  , findMyMatch};
+
+
+module.exports = { addMatch, getAllMatches, getMyMatches , addPlaying  , findMyMatch };

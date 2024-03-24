@@ -36,6 +36,9 @@
 .contest p {
   margin: 5px 0;
 }
+.AtContest{
+  font-size: large;
+}
 
 .contest:last-child {
   margin-bottom: 0;

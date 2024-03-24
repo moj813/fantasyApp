@@ -1,11 +1,24 @@
 
 const express = require("express");
+const http = require('http');
+const {Server} = require('socket.io');
+
 const app = express();
+const server = http.createServer(app);
+const io = new Server(server, {
+	cors: {
+	  origin: "http://localhost:3000",
+	  methods: ["GET", "POST"],
+	  credentials: true,
+	},
+  });
 
 const userRoutes = require("./routes/User");
 const tournamentRoutes = require("./routes/Tournament");
 const publicRoutes = require("./routes/Public");
 const  scoreRoutes  = require("./routes/Score");
+const {setupSocketLogic} = require("./controller/socket");
+
 // const profileRoutes = require("./routes/Profile");
 // const paymentRoutes = require("./routes/Payments");
 // const courseRoutes = require("./routes/Course");
@@ -21,6 +34,7 @@ const PORT = process.env.PORT || 4000;
 
 //database connect
 dbConnect();
+
 //middlewares
 app.use(express.json());
 app.use(cookieParser());
@@ -43,14 +57,23 @@ app.use("/admin/tournament", tournamentRoutes);
 app.use("/public",publicRoutes);
 app.use("/admin/score",scoreRoutes);
 
+setupSocketLogic(io);
+
 //def route
 app.get("/", (req, res) => {
+	req.header("Access-Control-Allow-Origin", "http://localhost:3000");
 	return res.json({
 		success:true,
 		message:'Your server is up and running....'
 	});
 });
 
-app.listen(PORT, () => {
-	console.log(`App is running at ${PORT}`)
-})
+
+
+// app.listen(PORT, () => {
+// 	console.log(`App is running at ${PORT}`)
+// })
+
+server.listen(PORT, () => {
+	console.log(`App is running at ${PORT}`);
+  });

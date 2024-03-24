@@ -58,9 +58,7 @@ const NewScore = () => {
               {match.stage == 3 && (
                 <Score
                   match={match}
-                  isCountdownActive={isCountdownActive}
-                  setIsCountdownActive={setIsCountdownActive}
-                />
+                  dispatch={dispatch}/>
               )}
               {match.stage == 4 && (
                 <>Match Completed</>

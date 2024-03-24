@@ -229,6 +229,7 @@ export async function findMatch(tournamentID,setLoading,setData){
 
    if(response.data.success){
     setData(response.data.data) ;
+    console.log(response.data.data)
    }
     setLoading(false);
   }catch(error){
@@ -237,6 +238,8 @@ export async function findMatch(tournamentID,setLoading,setData){
   }
 
 }
+
+
 
 
 export async function addPlaying11(matchID,teamAPlaying , teamBPlaying , navigate){

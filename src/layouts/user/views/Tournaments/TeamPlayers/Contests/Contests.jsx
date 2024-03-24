@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 
 const Contest = ({ id, name, entryFee, prizePool }) => (
   <div className="contest">
-    <h3>{name}</h3>
+    <h3 className='AtContest'>{name}</h3>
     <p>Contest ID: {id}</p>
     <p>Entry Fee: ${entryFee}</p>
     <p>Prize Pool: ${prizePool}</p>

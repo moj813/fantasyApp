@@ -1,6 +1,8 @@
 import { toast } from "react-toastify";
 import { apiConnector } from "../connector";
 import { setLoadingAtMatch, setMatch , setScore } from "../../slices/matchScore";
+
+
 export function updateStage(matchID, stage) {
   return async (dispatch) => {
     try {
@@ -113,3 +115,4 @@ export function setIntialPLayer(matchID,scoreID , striker, nonStriker,bowler , n
   toast.dismiss(toastID);
   }
 }
+

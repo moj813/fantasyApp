@@ -8,26 +8,22 @@ import "react-toastify/dist/ReactToastify.css";
 
 import { Provider } from "react-redux";
 import rootReducer from "./reducer/reducer";
-import {configureStore} from "@reduxjs/toolkit"
+import { configureStore } from "@reduxjs/toolkit";
 
-
-const store = configureStore({             //added "rootReducer" into store variable and rootReducer is combination of all reducer which is made in slices;
-  reducer:rootReducer,
+const store = configureStore({
+  //added "rootReducer" into store variable and rootReducer is combination of all reducer which is made in slices;
+  reducer: rootReducer,
 });
-
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-   <Provider store={store}>
-   <BrowserRouter>
-      <App />
-      <ToastContainer
-        theme="dark"
-        autoClose={800}
-      />
-    </BrowserRouter>
-   </Provider>
+    <Provider store={store}>
+      <BrowserRouter>
+        <App />
+        <ToastContainer theme="dark" autoClose={800} />
+      </BrowserRouter>
+    </Provider>
   </React.StrictMode>
 );
 

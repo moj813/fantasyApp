@@ -3,7 +3,7 @@
 import React from 'react';
 import './Commentry.css';
 
-const Commentry = () => {
+const Commentry = ({score , match}) => {
   // Provided data
   const commentryData = [
     { playerName: 'Virat Kohli', runs: 72, balls: 48, sixes: 2, fours: 6 },
@@ -33,7 +33,7 @@ const Commentry = () => {
   return (
     <div className="commentry-container">
       <div className="commentry-header">
-        <h2>Batting Team XXX/XX (over)</h2>
+        <h2>{score.currentBattingTeam.teamName} <span>{score.currentRun}/{score.currentWicket} <sapn className="runDisplayAtSCoreCard">({score.currentOver}.{score.currentBall}/{match.noOfOvers})</sapn></span></h2>
       </div>
       <div className="commentry-content">
         <table className="commentry-table">

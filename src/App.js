@@ -129,7 +129,7 @@ function App() {
                                           <Route path="/user/default" element={<>This is User Default</>} />
                                           <Route path="/user/tournaments" element={<ListTournament />} />
                                           <Route path={`/user/tournament/:tournamentID/match`} element={<LiveScore/>} />
-                                          <Route path="/user/:tournamentID/match/:matchID" element={<TeamScore />} />
+                                          <Route path="/user/:matchID/match/:scoreID" element={<TeamScore />} />
                                           <Route path="/user/*" element={<>404 Page Not Found</>} />
                                           <Route path="/user/tournaments/match/teamplayer" element={<TeamPlayer />} />
                                       </Route>

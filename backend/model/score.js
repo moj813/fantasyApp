@@ -79,11 +79,16 @@ const scoreSchema = new mongoose.Schema({
         required: true,
         default:null,
       },
-      toBatsmanID: {
+     strikerID: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
         default:null,
       },
+      nonStrikerID:{
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        default:null,
+      }
     }),
   },
   inning1: {
@@ -121,6 +126,22 @@ const scoreSchema = new mongoose.Schema({
         type: Number,
         default: 0,
       },
+      total4: {
+        type: Number,
+        default: 0,
+      },
+      total6: {
+        type: Number,
+        default: 0,
+      },
+      totalBallPlayed: {
+        type: Number,
+        default: 0,
+      },
+      totalRunGiven:{
+        type: Number,
+        default: 0,
+      },
       totalWicket: {
         type: Number,
         default: 0,
@@ -147,6 +168,22 @@ const scoreSchema = new mongoose.Schema({
         required: true,
       },
       totalRun: {
+        type: Number,
+        default: 0,
+      },
+      total4: {
+        type: Number,
+        default: 0,
+      },
+      total6: {
+        type: Number,
+        default: 0,
+      },
+      totalBallPlayed: {
+        type: Number,
+        default: 0,
+      },
+      totalRunGiven:{
         type: Number,
         default: 0,
       },

@@ -78,6 +78,9 @@ const teamAPlayerObject = matchDetails.teamAplaying.reduce((acc, player) => {
   acc[player._id] = {
     playerName: player.playerName,
     totalRun: 0, 
+    total4:0,
+    total6:0,
+    totalBallPlayed:0,
     totalWicket: 0,
     totalCaught: 0,
     totalOver: 0,
@@ -90,7 +93,10 @@ const teamAPlayerObject = matchDetails.teamAplaying.reduce((acc, player) => {
 const teamBPlayerObject = matchDetails.teamBplaying.reduce((acc, player) => {
   acc[player._id] = {
     playerName: player.playerName,
-    totalRun: 0, // Initialize with default values
+    totalRun: 0, 
+    total4:0,
+    total6:0,
+    totalBallPlayed:0,
     totalWicket: 0,
     totalCaught: 0,
     totalOver: 0,
@@ -137,7 +143,7 @@ const findScoreByID =async (req,res)=>{
   try{
 
     const {scoreid} = req.query;
-
+    console.log("REquest Arrived for" , scoreid)
     if(!scoreid){
       return res.json({
         success: false,
@@ -146,7 +152,7 @@ const findScoreByID =async (req,res)=>{
     }
 
     const score = await scoreModel.findById(scoreid);
-
+    console.log(score)
     return res.send({
       success: true,
       score:score,
@@ -191,4 +197,37 @@ const setIntialPLayer = async(req,res)=>{
 
   }
 }
-  module.exports = {updateStage , updateToss ,findScoreByID , setIntialPLayer};
+
+const findScoreAndMatch = async(req,res)=>{
+  try{
+
+    const {matchid , scoreid} = req.query;
+    console.log("REquest Arrived for Match" , matchid)
+    console.log("REquest Arrived for score" , scoreid)
+    if(!matchid || !scoreid){
+      return res.json({
+        success: false,
+        msg: "Filed Missing",
+      });
+    }
+    const response2 = await matchModel.findById(matchid)
+    const response = await scoreModel.findById(scoreid);
+
+    return res.json({
+      success: true,
+      msg: "Succefull",
+      match:response2,
+      score:response
+    });
+
+  }catch(error){
+
+    console.log(error)
+    return res.json({
+      success: false,
+      msg: "Can't Fetch the Data",
+    });
+  }
+}
+
+module.exports = {updateStage , updateToss ,findScoreByID , setIntialPLayer , findScoreAndMatch};
