@@ -26,8 +26,9 @@ const scoreSchema = new mongoose.Schema({
     default: 0,
   },
   currentBallID: {
-    type: String,
+    type: Number,
     required: true,
+    default:0.1,
   },
   currentBattingTeam: {
     teamID:{
@@ -61,20 +62,19 @@ const scoreSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     default:null,
   },
-  over: {
-    type: Map,
-    of: new mongoose.Schema({
+  over: [
+    {
       runScored: {
         type: Number,
         required: true,
-        default:null,
+        default:0,
       },
       ballType:{
         type:String,
         default:"normal"
       }
-    }),
-  },
+    },
+  ],
   inning1: {
     battingTeamID: {
       type: mongoose.Schema.Types.ObjectId,
