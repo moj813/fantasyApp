@@ -69,25 +69,9 @@ const scoreSchema = new mongoose.Schema({
         required: true,
         default:null,
       },
-      isWicket: {
-        type: Boolean,
-        default: false,
-        default:null,
-      },
-      bowlerID: {
-        type: mongoose.Schema.Types.ObjectId,
-        required: true,
-        default:null,
-      },
-     strikerID: {
-        type: mongoose.Schema.Types.ObjectId,
-        required: true,
-        default:null,
-      },
-      nonStrikerID:{
-        type: mongoose.Schema.Types.ObjectId,
-        required: true,
-        default:null,
+      ballType:{
+        type:String,
+        default:"normal"
       }
     }),
   },
@@ -139,6 +123,10 @@ const scoreSchema = new mongoose.Schema({
         default: 0,
       },
       totalRunGiven:{
+        type: Number,
+        default: 0,
+      },
+      totalBallThrown:{
         type: Number,
         default: 0,
       },

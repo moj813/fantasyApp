@@ -90,7 +90,9 @@ const Choosing = ({ match }) => {
                   {/* Render the Player component based on the selected player */}
 
                   {!striker || !nonStriker || !bowler ? (
-                    <>Select Player First *</>
+                    <>
+                      Select Player First *
+                    </>
                   ) : (
                     
                       <button className="atChoosing-custom-button" onClick={setPlayerHandle}>

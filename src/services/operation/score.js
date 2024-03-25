@@ -62,7 +62,7 @@ export function updateTossResult(matchID, tossWinner,tossDecision, battingTeam ,
 }
 
 
-export function findScore(scoreID , match , setLoading , setBattingPlayer , setBowlingPlayer){
+export function findScore(scoreID , match , setLoading  , setBowlingPlayer ,setBattingPlayer){
 return async (dispatch)=>{
   setLoading(true);
   try{

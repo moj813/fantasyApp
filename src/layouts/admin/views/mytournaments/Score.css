@@ -35,6 +35,11 @@
 .temp2Score {
     width: 45%;
 }
+.score1button_18:hover{
+    cursor: pointer;
+    background-color: #f8f8f8;
+    border: 1px solid ccc ;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;}
 
 .score {
     width: 100%;

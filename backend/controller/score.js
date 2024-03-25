@@ -35,7 +35,7 @@ const updateStage = async (req,res)=>{
 
 
         const {matchID,tossWinner , tossDecision , battingTeam , bowlingTeam} = req.body;
-
+        console.log("ToassUPdatE",battingTeam)
 
         const scoreResponse = await scoreModel.create({
           matchID,
@@ -73,7 +73,7 @@ const updateStage = async (req,res)=>{
 
         const matchDetails = await matchModel.findByIdAndUpdate(matchID , update,{new:true});
 
-// Transform teamAplaying array into an object where player IDs become keys
+
 const teamAPlayerObject = matchDetails.teamAplaying.reduce((acc, player) => {
   acc[player._id] = {
     playerName: player.playerName,
@@ -105,19 +105,33 @@ const teamBPlayerObject = matchDetails.teamBplaying.reduce((acc, player) => {
   return acc;
 }, {});
 
+let scoreData=null;
+
+if(matchDetails.teamAID===battingTeam.teamID){
+   scoreData = await scoreModel.findOneAndUpdate(
+    { matchID: matchID },
+    {
+      $set: {
+        [battingTeam.teamID]: teamAPlayerObject,
+        [bowlingTeam.teamID]: teamBPlayerObject
+      }
+    },
+    {new:true}
+  );
+}else{
+   scoreData = await scoreModel.findOneAndUpdate(
+    { matchID: matchID },
+    {
+      $set: {
+        [battingTeam.teamID]: teamBPlayerObject,
+        [bowlingTeam.teamID]: teamAPlayerObject,
+      }
+    },
+    {new:true}
+  );
+}
 
 
-
-const scoreData = await scoreModel.findOneAndUpdate(
-  { matchID: matchID },
-  {
-    $set: {
-      [battingTeam.teamID]: teamAPlayerObject,
-      [bowlingTeam.teamID]: teamBPlayerObject
-    }
-  },
-  {new:true}
-);
 
 
 const match = await matchModel.findByIdAndUpdate(matchID , {scoreID:scoreData._id},{new:true});
@@ -143,7 +157,7 @@ const findScoreByID =async (req,res)=>{
   try{
 
     const {scoreid} = req.query;
-    console.log("REquest Arrived for" , scoreid)
+   
     if(!scoreid){
       return res.json({
         success: false,
@@ -152,7 +166,7 @@ const findScoreByID =async (req,res)=>{
     }
 
     const score = await scoreModel.findById(scoreid);
-    console.log(score)
+    
     return res.send({
       success: true,
       score:score,
@@ -202,8 +216,7 @@ const findScoreAndMatch = async(req,res)=>{
   try{
 
     const {matchid , scoreid} = req.query;
-    console.log("REquest Arrived for Match" , matchid)
-    console.log("REquest Arrived for score" , scoreid)
+    
     if(!matchid || !scoreid){
       return res.json({
         success: false,

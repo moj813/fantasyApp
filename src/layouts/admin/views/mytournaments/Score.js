@@ -76,13 +76,38 @@ const Score = ({ match }) => {
     socket.emit("update1", score);
   }
 
+  const update0Run =()=>{
+    console.log("Called")
+    socket.emit("update0", score);
+  }
+
+  const update2Run =()=>{
+    console.log("Called")
+    socket.emit("update2", score);
+  }
+
+  const update3Run =()=>{
+    console.log("Called")
+    socket.emit("update3", score);
+  }
+
+  const update4Run =()=>{
+    console.log("Called")
+    socket.emit("update4", score);
+  }
+
+  const update6Run =()=>{
+    console.log("Called")
+    socket.emit("update6", score);
+  }
+
   return (
     <>
       {loading ? (
         <>Loading</>
       ) : (
         <>
-          {score && battingPlayer && bowlingPlayer ? (
+          {score  && bowlingPlayer ? (
             <div className="protector">
               <div className="Outer-box">
                 <div className="tempAtSCore">
@@ -102,12 +127,11 @@ const Score = ({ match }) => {
                           <MdSportsCricket className="icin" />
                         </h5>
                         <div className="vivek">
-                          {battingPlayer[score.currentStrikerID].playerName}
+                        {score[score.currentBattingTeam.teamID][score.currentStrikerID].playerName}
                           <h4 className="vivek">
-                            {battingPlayer[score.currentStrikerID].totalRun}(
+                            { score[score.currentBattingTeam.teamID][score.currentStrikerID].totalRun}(
                             {
-                              battingPlayer[score.currentStrikerID]
-                                .totalBallPlayed
+                              score[score.currentBattingTeam.teamID][score.currentStrikerID].totalBallPlayed
                             }
                             )
                           </h4>
@@ -118,12 +142,11 @@ const Score = ({ match }) => {
                           <MdOutlineSportsCricket className="icin" />
                         </h5>
                         <div className="vivek">
-                          {battingPlayer[score.currentNonStrikerID].playerName}
+                          {score[score.currentBattingTeam.teamID][score.currentNonStrikerID].playerName}
                           <h4 className="vivek">
-                            {battingPlayer[score.currentNonStrikerID].totalRun}(
+                          { score[score.currentBattingTeam.teamID][score.currentNonStrikerID].totalRun}(
                             {
-                              battingPlayer[score.currentNonStrikerID]
-                                .totalBallPlayed
+                              score[score.currentBattingTeam.teamID][score.currentNonStrikerID].totalBallPlayed
                             }
                             )
                           </h4>
@@ -187,26 +210,26 @@ const Score = ({ match }) => {
 
                 <div className="temp2Score">
                   <div className="grid">
-                    <div className="score1button_18">
+                    <div className="score1button_18" onClick={update0Run}>
                       <button className="scorebutton_18">0</button>
                     </div>
-                    <div className="score1button_18">
-                      <button className="scorebutton_18" onClick={update1Run}>1</button>
+                    <div className="score1button_18" onClick={update1Run}>
+                      <button className="scorebutton_18" >1</button>
                     </div>
-                    <div className="score1button_18">
+                    <div className="score1button_18" onClick={update2Run}>
                       <button className="scorebutton_18">2</button>
                     </div>
                     <div className="score1button_18">
                       <button className="scorebutton_18">UNDO</button>
                     </div>
-                    <div className="score1button_18">
-                      <button className="scorebutton_18">3</button>
+                    <div className="score1button_18" onClick={update3Run}>
+                      <button className="scorebutton_18" >3</button>
                     </div>
-                    <div className="score1button_18">
-                      <button className="scorebutton_18">4</button>
+                    <div className="score1button_18" onClick={update4Run}>
+                      <button className="scorebutton_18" >4</button>
                     </div>
-                    <div className="score1button_18">
-                      <button className="scorebutton_18">6</button>
+                    <div className="score1button_18" onClick={update6Run}>
+                      <button className="scorebutton_18" >6</button>
                     </div>
                     <div className="score1button_18">
                       <NavLink to="/admin/mytournaments/Out">

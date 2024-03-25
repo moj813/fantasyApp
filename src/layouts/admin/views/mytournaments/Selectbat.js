@@ -10,6 +10,7 @@ const Selectbat = ({ setView, battingPlayer, setStriker  , striker}) => {
     setStriker(playerID)
   };
 
+
   // Filter out the selected player from the list of available players
   const availablePlayers = Object.keys(battingPlayer).filter(
     (playerID) => playerID !== striker
