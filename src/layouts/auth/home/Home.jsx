@@ -1,93 +1,24 @@
-import React from 'react';
-import { HeroParallax } from './hero-parallax';
+import * as React from 'react';
+import ProductCategories from './Views/ProductCategories';
+import ProductSmokingHero from './Views/ProductSmokingHero';
+import AppFooter from './Views/AppFooter';
+import ProductHero from './Views/ProductHero';
+import ProductValues from './Views/ProductValues';
+import ProductHowItWorks from './Views/ProductHowItWorks';
+import ProductCTA from './Views/ProductCTA';
 
-export function HeroParallaxDemo() {
-  return <HeroParallax products={products} />;
-}
-
-const products = [
-  {
-    title: 'Moonbeam',
-    link: 'https://gomoonbeam.com',
-    thumbnail: 'https://aceternity.com/images/products/thumbnails/new/moonbeam.png',
-  },
-  {
-    title: 'Cursor',
-    link: 'https://cursor.so',
-    thumbnail: 'https://aceternity.com/images/products/thumbnails/new/cursor.png',
-  },
-  {
-    title: 'Rogue',
-    link: 'https://userogue.com',
-    thumbnail: 'https://aceternity.com/images/products/thumbnails/new/rogue.png',
-  },
-  {
-    title: 'Editorially',
-    link: 'https://editorially.org',
-    thumbnail: 'https://aceternity.com/images/products/thumbnails/new/editorially.png',
-  },
-  {
-    title: 'Editrix AI',
-    link: 'https://editrix.ai',
-    thumbnail: 'https://aceternity.com/images/products/thumbnails/new/editrix.png',
-  },
-  {
-    title: 'Pixel Perfect',
-    link: 'https://app.pixelperfect.quest',
-    thumbnail: 'https://aceternity.com/images/products/thumbnails/new/pixelperfect.png',
-  },
-  {
-    title: 'Algochurn',
-    link: 'https://algochurn.com',
-    thumbnail: 'https://aceternity.com/images/products/thumbnails/new/algochurn.png',
-  },
-  {
-    title: 'Aceternity UI',
-    link: 'https://ui.aceternity.com',
-    thumbnail: 'https://aceternity.com/images/products/thumbnails/new/aceternityui.png',
-  },
-  {
-    title: 'Tailwind Master Kit',
-    link: 'https://tailwindmasterkit.com',
-    thumbnail: 'https://aceternity.com/images/products/thumbnails/new/tailwindmasterkit.png',
-  },
-  {
-    title: 'SmartBridge',
-    link: 'https://smartbridgetech.com',
-    thumbnail: 'https://aceternity.com/images/products/thumbnails/new/smartbridge.png',
-  },
-  {
-    title: 'Renderwork Studio',
-    link: 'https://renderwork.studio',
-    thumbnail: 'https://aceternity.com/images/products/thumbnails/new/renderwork.png',
-  },
-  {
-    title: 'Creme Digital',
-    link: 'https://cremedigital.com',
-    thumbnail: 'https://aceternity.com/images/products/thumbnails/new/cremedigital.png',
-  },
-  {
-    title: 'Golden Bells Academy',
-    link: 'https://goldenbellsacademy.com',
-    thumbnail: 'https://aceternity.com/images/products/thumbnails/new/goldenbellsacademy.png',
-  },
-  {
-    title: 'Invoker Labs',
-    link: 'https://invoker.lol',
-    thumbnail: 'https://aceternity.com/images/products/thumbnails/new/invoker.png',
-  },
-  {
-    title: 'E Free Invoice',
-    link: 'https://efreeinvoice.com',
-    thumbnail: 'https://aceternity.com/images/products/thumbnails/new/efreeinvoice.png',
-  },
-];
-
-export default function Home() {
+function Home() {
   return (
-    <div>
-      {/* You can include your HeroParallaxDemo component or any other content here */}
-      <HeroParallaxDemo />
-    </div>
+    <React.Fragment>
+      <ProductHero />
+      <ProductValues />
+      <ProductCategories />
+      <ProductHowItWorks />
+      <ProductCTA />
+      <ProductSmokingHero />
+      <AppFooter />
+    </React.Fragment>
   );
 }
+
+export default Home;
