@@ -1,21 +1,30 @@
-import React, { useState } from 'react';
-import './Selectbat.css';
-import { NavLink } from 'react-router-dom';
+import React, { useState } from "react";
 
-const Selectbowl = ({ setView, score, bowlingPlayer}) => {
+import "./Selectbat.css";
+
+
+const Selectbowl = ({ score, updateOver, setView, bowlingPlayer }) => {
 
   const [selectedPlayer, setSelectedPlayer] = useState(null);
 
+
   const handlePlayerSelection = (playerID) => {
     setSelectedPlayer(playerID);
+  };
+  const player = Object.keys(bowlingPlayer).filter((item) => item !== score.currentBowlerID);
+
+  const submitHandler = () => {
+    //Emit the event here
+    updateOver(selectedPlayer);
+    setView(0);
   };
 
   return (
     <div className="atBatsman-outer-box">
       <div className="atBatsman-inside-box">
-        <p>Select the batsman</p>
+        <p>Select Bowler</p>
         <div className="atBatsman-card-row">
-          {Object.keys(bowlingPlayer).map((playerID) => (
+          {player.map((playerID) => (
             <div
               className={`atBatsman-card ${
                 selectedPlayer === playerID ? "atBatsman-selected" : ""
@@ -31,16 +40,12 @@ const Selectbowl = ({ setView, score, bowlingPlayer}) => {
       <button
         className="atBatsman-custom-button"
         disabled={!selectedPlayer}
-        onClick={() => setView(false)}
+        onClick={submitHandler}
       >
         Done
       </button>
     </div>
   );
-}
+};
 
 export default Selectbowl;
-
-
-
-
