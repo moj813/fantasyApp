@@ -6,7 +6,6 @@ import ProductHero from './Views/ProductHero';
 import ProductValues from './Views/ProductValues';
 import ProductHowItWorks from './Views/ProductHowItWorks';
 import ProductCTA from './Views/ProductCTA';
-
 function Home() {
   return (
     <React.Fragment>

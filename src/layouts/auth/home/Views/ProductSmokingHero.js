@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import Typography from '../Components/Typography';
-
+import DisabledAccordion from '../Components/DisabledAccordion';
 function ProductSmokingHero() {
   return (
     <Container
@@ -32,6 +32,7 @@ function ProductSmokingHero() {
         alt="buoy"
         sx={{ width: 60 }}
       />
+      <DisabledAccordion width="60%" />
     </Container>
   );
 }
