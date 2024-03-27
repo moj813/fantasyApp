@@ -7,7 +7,12 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { BiCricketBall } from "react-icons/bi";
 
 import Selectbat from "./Selectbat";
-import { MdOutlineSportsCricket, MdSportsCricket } from "react-icons/md";
+import Noball from "./Noball";
+import Out from "./Out";
+import Caught from "./Caught";
+import Selectbatsman from "./Selectbatsman";
+import Strike from "./Strike";
+import { MdOutlineSportsCricket, MdSportsCricket, MdWidthWide } from "react-icons/md";
 import { findScore } from "../../../../services/operation/score";
 import { setScore } from "../../../../slices/matchScore";
 import "./Score.css";
@@ -122,8 +127,76 @@ const Score = ({ match }) => {
     socket.emit("changeOver", { score: score, bowlerID: selectedPlayer });
   };
 
+  const wide = () => {
+    console.log("Called");
+    if (score.currentBall >= 6) {
+      return toast.warning("Change Over");
+    }
+    socket.emit("wide", score);
+  };
+
+  const noBallHandler = (run)=>{
+    socket.emit('noBall',{score:score , run:run+1});
+  }
+  const byeHandler = (run)=>{
+    socket.emit('byeball',{score:score , run:run});
+    console.log("Event Emitted")
+  }
+
+  const undoHandler = ()=>{
+    if (score.over.length ==0 ) {
+      return toast.warning("Can't undo after new Over Starting");
+    }
+    socket.emit("undo",score);
+  }
+
+  const caughtOut = (playerID)=>{
+    if (score.currentBall >=6 ) {
+      return toast.warning("Change The Over");
+    }
+    if(score.currentOver === match.noOfOvers){
+      return toast.warning("Over Complted")
+    }
+    if(score.currentWicket === score.over.length -1){
+      return toast.warning("All Player Out")
+    }
+    toast.success(`Event Emitted ${playerID}`)
+    socket.emit("caughtOut",({score:score , newPlayer:playerID}))
+  }
+
+  const noBallPopUpHandler = ()=>{
+    if(score.currentBall>=6){
+      return toast.warning("Change Over")
+    }
+    setView(2)
+  }
+  const byBallPopUpHandler = ()=>{
+    if(score.currentBall>=6){
+      return toast.warning("Change Over")
+    }
+    setView(3)
+  }
+  const legByePopUpHandler = ()=>{
+    if(score.currentBall>=6){
+      return toast.warning("Change Over")
+    }
+    setView(4)
+  }
+
+
+  const outPopUpHandler = ()=>{
+    if(score.currentBall>=6){
+      return toast.warning("Change Over")
+    }
+    let totalPlayerLength = Object.keys(score[score.currentBattingTeam.teamID]).length;
+    if(score.currentWicket === totalPlayerLength-1){
+      return toast.warning("All Player Out")
+    }
+    setView(5)
+  }
+
   const handelOver = () => {
-    console.log("Peinon", score.over);
+  
     //Check The Size of Over Object if it is six then change The Over
     if (
       score.currentBall >= 6 &&
@@ -279,7 +352,7 @@ const Score = ({ match }) => {
                         <div className="score1button_18" onClick={update2Run}>
                           <button className="scorebutton_18">2</button>
                         </div>
-                        <div className="score1button_18">
+                        <div className="score1button_18" onClick={undoHandler}>
                           <button className="scorebutton_18">UNDO</button>
                         </div>
                         <div className="score1button_18" onClick={update3Run}>
@@ -291,24 +364,34 @@ const Score = ({ match }) => {
                         <div className="score1button_18" onClick={update6Run}>
                           <button className="scorebutton_18">6</button>
                         </div>
-                        <div className="score1button_18">
+                        <div
+                          className="score1button_18"
+                          onClick={outPopUpHandler}
+                        >
                           <NavLink to="/admin/mytournaments/Out">
                             <button className="scorebutton_18">OUT</button>
                           </NavLink>
                         </div>
-                        <div className="score1button_18">
+                        <div className="score1button_18" onClick={wide}>
                           <button className="scorebutton_18">WD</button>
                         </div>
-                        <div className="score1button_18">
-                          <NavLink to="/admin/mytournaments/Noball">
-                            <button className="scorebutton_18">NB</button>
-                          </NavLink>
+                        <div
+                          className="score1button_18"
+                          onClick={noBallPopUpHandler}
+                        >
+                          <button className="scorebutton_18">NB</button>
                         </div>
-                        <div className="score1button_18">
+                        <div
+                          className="score1button_18"
+                          onClick={byBallPopUpHandler}
+                        >
                           <button className="scorebutton_18">BYE</button>
                         </div>
-                        <div className="score1button_18">
-                          <button className="scorebutton_18">LB</button>
+                        <div
+                          className="score1button_18"
+                          onClick={legByePopUpHandler}
+                        >
+                          <button className="scorebutton_18">LEG BYE</button>
                         </div>
                       </div>
                     </div>
@@ -331,6 +414,55 @@ const Score = ({ match }) => {
                   />
                 )
               }
+
+              {view === 2 && (
+                <Noball
+                  string={"No Ball"}
+                  noBallHandler={noBallHandler}
+                  setView={setView}
+                />
+              )}
+              {view === 3 && (
+                <Noball
+                  string={"Bye Ball"}
+                  noBallHandler={byeHandler}
+                  setView={setView}
+                />
+              )}
+              {view === 4 && (
+                <Noball
+                  string={"Legbye Ball"}
+                  noBallHandler={byeHandler}
+                  setView={setView}
+                />
+              )}
+
+              {view === 5 && (
+                <Out
+                  setView={setView}
+                  score={score}
+                  battingPlayer={battingPlayer}
+                />
+              )}
+
+              {view === 6 && (
+                <Selectbatsman
+                score={score}
+                  setView={setView}
+                  battingPlayer={battingPlayer}
+                  setStriker={caughtOut}
+                  striker={score.currentStrikerID}
+                  nonStriker={score.currentNonStrikerID}
+                />
+              )}
+
+              {/* <Selectbat
+                  setView={setView}
+                  battingPlayer={battingPlayer}
+                  setStriker={setStriker}
+                  striker={nonStriker} /> */}
+
+              {view === 7 && <Strike />}
             </>
           ) : (
             <>No Data Found</>

@@ -1,8 +1,21 @@
 .outer-box_18 {
-  border: 2px solid #000;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+  aspect-ratio: 3/2;
+  min-width:250px !important;
   padding: 20px;
   width: 300px;
   margin: 0 auto;
+}
+.formAtNoBall{
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.formAtNoBall .inputFieldAtlogin_22 input{
+  width: 200% !important;
 }
 
 .done {

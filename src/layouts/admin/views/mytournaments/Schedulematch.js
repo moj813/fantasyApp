@@ -2,18 +2,22 @@ import React, { useEffect, useState } from 'react'
 import './Schedulematch.css'
 import Edit from './Edit.js'
 import { NavLink , useParams } from 'react-router-dom'
+import {useDispatch } from 'react-redux'
+import { setMatch } from '../../../../slices/matchScore.js'
+import { setScore } from '../../../../slices/matchScore.js'
 import { getMyMatches } from '../../../../services/operation/tournament.js'
 
 const Schedulematch = () => {
   const { tournamentID } = useParams();
-
-  
+  const dispatch = useDispatch();
   const [loading , setLoading] = useState(false);
   const [data,setData] = useState([]);
 
   useEffect(()=>{
     getMyMatches(tournamentID , setLoading , setData);
     console.log(data)
+    dispatch(setScore(null))
+
   },[tournamentID])
 
   return (

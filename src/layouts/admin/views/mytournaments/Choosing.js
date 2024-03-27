@@ -6,6 +6,7 @@ import "./Choosing.css";
 import { findScore, setIntialPLayer } from "../../../../services/operation/score";
 
 const Choosing = ({ match }) => {
+  console.log(match)
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { score } = useSelector((state) => state.matchScore);

@@ -335,6 +335,272 @@ const setupSocketLogic = (io) => {
       }
     });
 
+    //Update Wide Ball
+
+    socket.on("wide",async (score)=>{
+      try{
+
+        let updatedMatch;
+
+        updatedMatch = await scoreModel.findByIdAndUpdate(
+          score._id,
+          {
+            $inc: {
+              currentRun: 1,
+              [`${score.currentInning}.${score.currentBattingTeam.teamID}.scored`]: 1,
+              [`${score.currentBowlingTeam.teamID}.${score.currentBowlerID}.totalRunGiven`]: 1,
+              [`${score.currentBowlingTeam.teamID}.${score.currentBowlerID}.totalBallThrown`]: 1,
+            },
+            $push:{
+              "over":{
+                  runScored:0,
+                  ballType:"wide"
+              }
+            },  
+          },
+          { new: true }
+        );
+          
+        io.to(score._id).emit("scoreUpdated", updatedMatch);
+        console.log(updatedMatch);
+
+      }catch(err){
+        console.log(error);
+        io.to(data.score._id).emit(data.score);
+      }
+    })
+
+
+    socket.on("noBall",async (data)=>{
+      try{
+        console.log(data.run)
+        let updatedMatch;
+        updatedMatch = await scoreModel.findByIdAndUpdate(
+          data.score._id,
+          {
+            $inc: {
+              currentRun: data.run,
+              [`${data.score.currentInning}.${data.score.currentBattingTeam.teamID}.scored`]: data.run,
+              [`${data.score.currentBowlingTeam.teamID}.${data.score.currentBowlerID}.totalRunGiven`]: data.run,
+              [`${data.score.currentBowlingTeam.teamID}.${data.score.currentBowlerID}.totalBallThrown`]: 1,
+            },
+            $push:{
+              "over":{
+                  runScored:data.run,
+                  ballType:"noBall"
+              }
+            },  
+          },
+          { new: true }
+        );
+         
+        io.to(data.score._id).emit("scoreUpdated", updatedMatch);
+      }catch(err){
+        console.log(err);
+        io.to(data.score._id).emit(data.score);
+      }
+    })
+
+    socket.on("undo",async (score)=>{
+
+      try{
+        let updatedMatch;
+        const lastEntry = score.over[score.over.length - 1];
+        console.log(lastEntry);
+
+        //Reverse Run , RunGiven By Baller and remove the current Entry OF Ball
+        if(lastEntry.ballType==='noBall'){
+
+        updatedMatch = await scoreModel.findByIdAndUpdate(
+          score._id,
+          {
+            $inc: {
+              currentRun: -lastEntry.runScored,
+              [`${score.currentInning}.${score.currentBattingTeam.teamID}.scored`]: -lastEntry.runScored,
+              [`${score.currentBowlingTeam.teamID}.${score.currentBowlerID}.totalRunGiven`]: -lastEntry.runScored,
+              [`${score.currentBowlingTeam.teamID}.${score.currentBowlerID}.totalBallThrown`]: -1,
+            },
+            $pop:{
+              "over":1
+            },  
+          },
+          { new: true }
+        );
+          
+        return io.to(score._id).emit("scoreUpdated", updatedMatch);
+        } 
+
+
+        //Decrese run by 1 for Current , runGiven
+        if(lastEntry.ballType==='wide'){
+
+          updatedMatch = await scoreModel.findByIdAndUpdate(
+            score._id,
+            {
+              $inc: {
+                currentRun: -1,
+                [`${score.currentInning}.${score.currentBattingTeam.teamID}.scored`]: -1,
+                [`${score.currentBowlingTeam.teamID}.${score.currentBowlerID}.totalRunGiven`]: -1,
+                [`${score.currentBowlingTeam.teamID}.${score.currentBowlerID}.totalBallThrown`]: -1,
+              },
+              $pop:{
+                "over":1
+              },  
+            },
+            { new: true }
+          );
+            
+          return io.to(score._id).emit("scoreUpdated", updatedMatch);
+          } 
+
+          //Decrease Run scored , for Batsman, Bowler, total , chnage Striker , decrease Total Ball By 1
+          if(lastEntry.ballType==='normal'){
+
+            // updatedMatch = await scoreModel.findByIdAndUpdate(
+            //   score._id,
+            //   {
+            //     $inc: {
+            //       currentRun: -lastEntry.runScored,
+            //       [`${score.currentInning}.${score.currentBattingTeam.teamID}.scored`]: -lastEntry.runScored,
+            //       [`${score.currentBowlingTeam.teamID}.${score.currentBowlerID}.totalRunGiven`]: -lastEntry.runScored,
+            //       [`${score.currentBowlingTeam.teamID}.${score.currentBowlerID}.totalBallThrown`]: -1,
+            //     },
+            //     $pop:{
+            //       "over":1
+            //     },  
+            //   },
+            //   { new: true }
+            // );
+              
+            // return io.to(score._id).emit("scoreUpdated", updatedMatch);
+            } 
+        // console.log(updatedMatch);
+
+      }catch(err){
+        console.log(err);
+        io.to(score._id).emit(score);
+      }
+
+    })
+
+
+    socket.on("byeball",async (data)=>{
+      try{
+        console.log(data)
+        //handle 2case Strike changed or not changhed
+        //if run odd then change strike
+        if(data.run%2===0){
+         
+          const updatedMatch = await scoreModel.findByIdAndUpdate(
+            data.score._id,
+            {
+              $inc: {
+                currentRun: data.run,
+                currentBall:1,
+                [`${data.score.currentInning}.${data.score.currentBattingTeam.teamID}.scored`]: data.run,
+                [`${data.score.currentBowlingTeam.teamID}.${data.score.currentBowlerID}.totalBallThrown`]: 1,
+              },
+              $push:{
+                "over":{
+                    runScored:data.run,
+                    ballType:"normal"
+                }
+              },  
+            },
+            { new: true }
+          );
+  
+          return io.to(data.score._id).emit("scoreUpdated", updatedMatch);
+        }
+
+        if(data.run%2!==0){
+          const updatedMatch = await scoreModel.findByIdAndUpdate(
+            data.score._id,
+            {
+              $inc: {
+                currentRun: data.run,
+                currentBall:1,
+                [`${data.score.currentInning}.${data.score.currentBattingTeam.teamID}.scored`]: data.run,
+                [`${data.score.currentBowlingTeam.teamID}.${data.score.currentBowlerID}.totalBallThrown`]: 1,
+              },
+              $push:{
+                "over":{
+                    runScored:data.run,
+                    ballType:"normal"
+                }
+              },  
+              $set:{
+                currentStrikerID: data.score.currentNonStrikerID,
+                currentNonStrikerID: data.score.currentStrikerID,
+              },  
+            },
+            { new: true }
+          );
+            console.log(updatedMatch)
+          return io.to(data.score._id).emit("scoreUpdated", updatedMatch);
+        }
+
+      }catch(err){
+        console.log(err);
+        io.to(data.score._id).emit(data.score);
+      }
+    })
+
+
+
+    socket.on("caughtOut",async (data)=>{
+      try{
+
+        let updatedMatch;
+
+        const stage1 = await scoreModel.findByIdAndUpdate(
+          data.score._id,
+          {
+            $inc: {
+              currentWicket:1,
+              [`${data.score.currentBowlingTeam.teamID}.${data.score.currentBowlerID}.totalWicket`]: 1,
+              [`${data.score.currentBowlingTeam.teamID}.${data.score.currentBowlerID}.totalBallThrown`]: 1,
+            },
+            $push:{
+              "over":{
+                  runScored:0,
+                  ballType:"wicket"
+              }
+            },
+            $set:{
+              [`${data.score.currentBattingTeam.teamID}.${data.score.currentStrikerID}.isOut`]: true,
+            }
+          },
+          { new: true }
+        );
+
+        updatedMatch = await scoreModel.findByIdAndUpdate(
+          data.score._id,
+          {
+            $set:{
+              currentStrikerID:data.newPlayer,
+            }
+          },
+          { new: true }
+        )
+
+        if(data.score.currentBall===5){
+          console.log("IF Executerd")
+          io.to(score._id).emit("6ballCompleate", updatedMatch);
+        }
+
+        io.to(data.score._id).emit("scoreUpdated", updatedMatch);
+        console.log(updatedMatch);
+
+      }catch(err){
+
+        console.log(err);
+        io.to(data.score._id).emit(data.score);
+
+      }
+    })
+
+
     // Handle user joining room
     socket.on("joinRoom", (userId) => {
       socket.join(userId);

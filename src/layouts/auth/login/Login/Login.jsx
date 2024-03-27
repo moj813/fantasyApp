@@ -38,7 +38,8 @@ const Login = () => {
                   value={email}
                   onChange={handleOnChange}
                 />
-              </div><div className='inputFieldAtlogin_22'>
+              </div>
+              <div className='inputFieldAtlogin_22'>
                 <p>Password : *</p>
                 <input type="password"
                   required
