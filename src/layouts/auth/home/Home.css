@@ -1,0 +1,61 @@
+/* Header styles */
+.header {
+  max-width: 100%;
+  position: relative;
+  margin: auto;
+  padding: 20px 4px;
+  width: 100%;
+  left: 0;
+  top: 0;
+}
+
+.header h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+.header p {
+  max-width: 100%;
+  font-size: 1rem;
+  margin-top: 8px;
+  color: #ccc;
+}
+
+/* ProductCard styles */
+.product {
+  position: relative;
+  flex-shrink: 0;
+  cursor: pointer;
+  height: 96px;
+  width: 30rem; /* Adjusted width */
+}
+
+.product a {
+  display: block;
+}
+
+.product img {
+  position: absolute;
+  object-fit: cover;
+  object-position: left top;
+  height: 100%;
+  width: 100%;
+  inset: 0;
+}
+
+.product .overlay {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  pointer-events: none;
+}
+
+.product h2 {
+  position: absolute;
+  bottom: 4px;
+  left: 4px;
+  opacity: 0;
+  color: #fff;
+}
