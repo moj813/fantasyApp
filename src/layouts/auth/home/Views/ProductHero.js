@@ -11,8 +11,9 @@ export default function ProductHero() {
     <ProductHeroLayout
       sxBackground={{
         backgroundImage: `url(${backgroundImage})`,
-        backgroundColor: '#7fc7d9', // Average color of the background image.
+        backgroundColor: '#7fc7d9',
         backgroundPosition: 'center',
+        height:"140%",
       }}
     >
       <Typography color="inherit" align="center" variant="h2" marked="center">

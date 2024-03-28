@@ -9,22 +9,12 @@ function ProductSmokingHero() {
       component="section"
       sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', my: 9 }}
     >
-      <Button
-        sx={{
-          border: '0px solid currentColor',
-          borderRadius: 0,
-          height: 'auto',
-          py: 2,
-          px: 5,
-        }}
-      >
-        <Typography variant="h4" component="span" border="">
+
+        <Typography variant="h4" component="span">
           Got any questions? Need help?
         </Typography>
-      </Button>
 
-
-      <DisabledAccordion width="60%" />
+      <DisabledAccordion width="40%" />
     </Container>
   );
 }
