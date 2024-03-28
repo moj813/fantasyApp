@@ -48,11 +48,11 @@ const cars=[
   },
   {
     type:"LBW",
-    fun:lbwHandler,
+    fun:bowledHandler,
   },
   {
     type:"HIT WICKET",
-    fun:hitHandler,
+    fun:bowledHandler,
   },
 ]
   return (

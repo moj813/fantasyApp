@@ -7,6 +7,7 @@ const ButtonRoot = styled(MuiButton)(({ theme, size }) => ({
   fontWeight: 500,
 
   textTransform: 'uppercase',
+  width:"fit-content",
   textDecoration: 'none',
   padding: '1em 2.5em',
   display: 'inline-block',

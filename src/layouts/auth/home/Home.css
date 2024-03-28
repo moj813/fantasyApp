@@ -8,7 +8,71 @@
   left: 0;
   top: 0;
 }
+.accordination{
+  width: 40%;
+  margin-top: 50px !important;
+}.supportAccordination {
+  height: 5px;
+}
 
+.heroTest{
+  height: 95%;
+  margin-bottom: 100px !important;
+}
+.heroSectionInnerContainer{
+  height: 100% !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+  
+}
+.heroSectionContentContainer{
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap:20px !important;
+}
+.herosectionBtnContainer{
+  width: 60%;
+  display: flex;
+  justify-content: space-around;
+}
+.customebtn{
+  background-color: #7522e6 !important;
+  color: #ffffff !important;
+}
+.customebtn :hover{
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}
+.rightSideContainerAtHeroSection{
+  width: 50% !important;
+  height: 100% !important;
+  display: flex;
+  align-items: center;
+  padding: 50px !important;
+}
+.leftSideContainerAtHeroSection{
+  width: 50% !important;
+  height: 100% !important;
+  display: flex;
+  align-items: center;
+}
+.leftSideContainerAtHeroSection img{
+  height: auto;
+  width: 100%;
+  object-fit: cover;
+}
+
+
+.atHomeSeprator{
+  margin-top: 50px !important;
+  color: black;
+  background-color: #080509;
+  width: 100vw !important;
+  padding-bottom: 50px !important;
+}
 .header h1 {
   font-size: 2rem;
   font-weight: bold;

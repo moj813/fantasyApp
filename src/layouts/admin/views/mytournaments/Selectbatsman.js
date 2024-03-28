@@ -16,20 +16,9 @@ const Caught = ({
     setSelectedPlayer(playerID);
   };
 
-  // Filter out the Current Striker , Currnet Non Striker and Alredy Out  player from the list of available players
-  // const availablePlayers = Object.keys(score[score.currentBattingTeam.teamID]).filter(
-  //   (playerID) =>score[score.currentBattingTeam.teamID][playerID].isOut !== true
-  // );
-
-  // playerID !== score.currentNonStrikerID &&
-  // score[score.currentStrikerID] !== playerID &&
-
 
   const availablePlayers = Object.keys(score[score.currentBattingTeam.teamID]).filter((playerID) => {
-
     const shouldExclude = playerID === score.currentStrikerID || playerID === score.currentNonStrikerID || score[score.currentBattingTeam.teamID][playerID].isOut;
-
-  // Return true only if all conditions are NOT met (player should NOT be excluded)
   return !shouldExclude;
   });
 
