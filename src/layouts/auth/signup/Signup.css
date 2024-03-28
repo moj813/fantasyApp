@@ -65,6 +65,7 @@
   display: flex;
   width: 100%;
   gap: 10%;
+  margin-top: 35px;
 }
 
 .personlDetailContainer_22 > .inputFieldAtSignup_22 > input{

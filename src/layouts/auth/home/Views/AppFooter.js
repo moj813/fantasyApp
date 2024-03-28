@@ -1,6 +1,7 @@
 import * as React from 'react';
-import './AppFooter.css';
-
+import './styles/AooFooter.css';
+import instagram from '../Components/174855.png';
+import facebook from '../Components/733547.png';
 export default function AppFooter() {
   return (
     <section>
@@ -10,13 +11,12 @@ export default function AppFooter() {
         <div class="sec4First">
                 <div class="sec4LogoAndSocialMedia">
                     <div class="sec4Img">
-                        {/* <img src="Assets/finalLogo.png" alt=""> */}
+                        CricFantasy
                     </div>
                     <div class="sec4slogo">
-                        {/* <img src="Assets/facebook2.png" alt="">
-                        <img src="Assets/instgram2.png" alt="">
-                        <img src="Assets/linkdin2.png" alt="">
-                        <img src="Assets/twitter2.png" alt=""> */}
+                        <img src={facebook} alt="" />
+                        <img src={instagram} alt="" />
+                        
                     </div>
                 </div>
                 <div class="sec4QuickLinks">
@@ -43,13 +43,13 @@ export default function AppFooter() {
                     <h2>Contact Us</h2>
                     <ul>
                         <li>
-                            <h4>Email : jenildholariya5555@gmail.com</h4>
+                            <h4>Email : marakanadarshil@gmail.com</h4>
                         </li>
                         <li>
-                            <h4>Tel : +91 9484970831</h4>
+                            <h4>Tel : +91 8347296122</h4>
                         </li>
                         <li>
-                            <h4>Fax : +91 9909150835</h4>
+                            <h4>Fax : +91 9316172495</h4>
                         </li>
                     </ul>
                 </div>
@@ -61,8 +61,7 @@ export default function AppFooter() {
         
         <div class="sec4Second">
             <div class="sec4footerpart1">
-                <h3>Copyright © 2023 AQuiLL Chemical Industries Ltd. All rights reserved.</h3>
-                <h3>Handcrafted with ❤ by Nishant Kathrotiya</h3>
+                <h3>Copyright © 2024 CricFantasy App ltd. All rights reserved.</h3>
             </div>
             <div class="sec4footerpart2">
                 <h3>Terms & Condition - Purchase - Sales Disclaimer Privacy Policy</h3>

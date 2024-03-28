@@ -1,0 +1,150 @@
+.sec4 {
+    background-color: #071434;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: 20px; /* Reduce the top margin */
+    padding-top: 10px; /* Reduce the top padding */
+    padding-bottom: 10px; /* Reduce the bottom padding */
+    color: #F4F8FF;
+    overflow: hidden;
+    max-height: 30%;
+}
+
+.sec4First {
+    width: 100%;
+    padding: 10px 0; /* Reduce the top and bottom padding */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    background-color: transparent;
+}
+
+
+.sec4LogoAndSocialMedia {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (max-width: 780px) {
+    .sec4First {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 90%;
+        margin-bottom: 10px;
+    }
+
+    .sec4Second {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100vw;
+        margin: 0;
+        padding: 10px !important;
+    }
+
+    .sec4QuickLinks,
+    .sec4LogoAndSocialMedia,
+    .sec4Img {
+        margin-bottom: 20px;
+    }
+
+    .sec4 {
+        justify-content: center;
+        align-items: center;
+        width: 100vw;
+    }
+}
+
+.sec4Img  {
+    font-size:40px;
+    margin-bottom: 30px;
+    font-family:sans-serif;
+}
+
+.sec4slogo img {
+    width: 60px; /* Adjust width as needed */
+    height: 60px; /* Adjust height as needed */
+    background-color: transparent;
+    margin: 10px;
+}
+
+.sec4slogo,
+.sec4QuickLinks,
+.sec4Contactus {
+    background-color: transparent;
+}
+
+.sec4Contactus ul,
+.sec4QuickLinks ul {
+    background-color: transparent;
+    list-style-type: none;
+}
+
+.sec4Contactus li {
+    background-color: transparent;
+    
+}
+
+.sec4QuickLinks h4 {
+    background-color: transparent;
+    text-decoration: none;
+    font-weight: 200;
+}
+
+
+.sec4Contactus h4 {
+    background-color: transparent;
+    font-size: small;
+    font-weight: 200;
+    text-decoration: none; /* Remove underline */
+    color: inherit; /* Use the default text color */
+}
+
+
+.sec4Contactus,
+.sec4QuickLinks {
+    line-height: 30px;
+}
+
+.sec4Contactus h2,
+.sec4QuickLinks h2 {
+    background-color: transparent;
+    font-size: medium;
+}
+
+.sec4Second {
+    background-color: #071434;
+    padding: 10px 150px;
+    justify-content: space-between;
+    align-items: center;
+    width: 100vw;
+    overflow-x: hidden;
+}
+
+.line {
+    width: 80vw;
+}
+.sec4footerpart1 h3,
+.sec4footerpart2 h3 {
+    background-color: #071434;
+    font-size: medium;
+    line-height: 35px;
+    font-size: small;
+    font-weight: 300;
+    text-align: center; /* Center align the text */
+}
+
+.sec4footerpart2 h3 {
+    background: transparent;
+    font-size: small;
+    font-weight: 300;
+    text-align: center; /* Center align the text */
+}
+
+
